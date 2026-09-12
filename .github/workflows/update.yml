@@ -1,0 +1,122 @@
+# 公開版は手動実行のみ。実行前に配信先・API利用条件を確認する。
+name: update-knowledge-base
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: update-knowledge-base
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: huggingface-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            huggingface-${{ runner.os }}-
+
+      - name: Fetch sources
+        run: python scripts/fetch.py
+
+      - name: Split llms-full for RAG
+        run: |
+          python scripts/split_llms_full.py \
+            --input knowledge/docs/llms-full.md \
+            --output data/processed/chunks.jsonl \
+            --stats data/processed/stats.json
+
+      # tokenizerが黙ってchar/4へ劣化すると512超過チャンクが無警告で
+      # 切り捨てられ検索精度が壊れる（HANDOFF.md §1）。embed前に必ず検証する。
+      - name: Verify chunking stats
+        run: |
+          python - <<'PY'
+          import json
+
+          with open("data/processed/stats.json", encoding="utf-8") as f:
+              stats = json.load(f)
+          counter = stats["token_counter"]
+          oversize = stats["oversize_chunk_count"]
+          if not counter.startswith("hf:"):
+              raise SystemExit(f"token counter degraded: {counter}")
+          if oversize != 0:
+              raise SystemExit(f"oversize chunks found: {oversize}")
+          print(f"chunking stats OK: {counter}, {stats['chunk_count']} chunks")
+          PY
+
+      - name: Restore ChromaDB cache
+        uses: actions/cache/restore@v4
+        with:
+          path: chroma-data
+          key: chroma-data-${{ github.run_id }}
+          restore-keys: |
+            chroma-data-
+
+      - name: Embed and store (resumable)
+        env:
+          EMBED_LOCAL_FILES_ONLY: "0"
+        run: python scripts/reembed.py --input data/processed/chunks.jsonl --max-seconds 1800
+
+      - name: Save ChromaDB cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: chroma-data
+          key: chroma-data-${{ github.run_id }}
+
+      - name: Verify ChromaDB count
+        run: |
+          python - <<'PY'
+          from scripts.embed import get_chroma_client, get_collection_name
+
+          collection = get_chroma_client().get_collection(get_collection_name())
+          count = collection.count()
+          print(f"ChromaDB documents: {count}")
+          if count <= 0:
+              raise SystemExit("ChromaDB collection is empty")
+          PY
+
+      - name: Upload ChromaDB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chroma-data
+          path: chroma-data
+          retention-days: 7
+
+      - name: Upload processing stats
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-stats
+          path: data/processed/stats.json
+          retention-days: 30
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add knowledge data/processed/stats.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(actions): update knowledge base"
+            git push
+          fi

@@ -1,0 +1,15 @@
+{"id": "q001", "query": "システムプロンプトをキャッシュして料金を節約するには", "lang": "ja", "category": "prompt_caching", "answerable": true, "notes": "易問。Prompt cachingページのトップレベル。eval/dataset.jsonlから流用。"}
+{"id": "q003", "query": "ツールの定義を少し変えただけでプロンプトキャッシュは無効になりますか", "lang": "ja", "category": "prompt_caching", "answerable": true, "notes": "難問: prompt cachingとtool useの複合トピック。eval/dataset.jsonlから流用。"}
+{"id": "q006", "query": "画像をAPIに渡してClaudeに見せる方法", "lang": "ja", "category": "vision", "answerable": true, "notes": "易問。eval/dataset.jsonlから流用。"}
+{"id": "q007", "query": "Claudeが画像を見て苦手なこと・間違えやすいことは何ですか", "lang": "ja", "category": "vision", "answerable": true, "notes": "難問: Visionページ内のLimitationsセクション。eval/dataset.jsonlから流用。"}
+{"id": "q009", "query": "拡張思考とツール使用を組み合わせて使うにはどうすればいい", "lang": "ja", "category": "extended_thinking", "answerable": true, "notes": "難問: 複数機能の組み合わせセクション。eval/dataset.jsonlから流用。"}
+{"id": "q013", "query": "Claudeの回答に元ネタの引用箇所を付けさせる方法", "lang": "ja", "category": "citations", "answerable": true, "notes": "易問。eval/dataset.jsonlから流用。"}
+{"id": "q017", "query": "Claude自体で文章の埋め込みベクトルを作ることはできますか", "lang": "ja", "category": "embeddings", "answerable": true, "notes": "難問（トリック）: AnthropicはEmbeddings APIを自社提供せずVoyage AIを案内。eval/dataset.jsonlから流用。"}
+{"id": "q021", "query": "組織のAPIレートリミットの上限を確認する方法", "lang": "ja", "category": "rate_limits", "answerable": true, "notes": "難問（複数ページ）: 組織向け/ワークスペース向けの2ページが両方とも正解。eval/dataset.jsonlから流用。"}
+{"id": "q026", "query": "how to cache system prompts to reduce API costs", "lang": "en", "category": "prompt_caching", "answerable": true, "notes": "Easy. eval/dataset.jsonlから流用。"}
+{"id": "q028", "query": "how to receive partial tool input as it streams in", "lang": "en", "category": "streaming", "answerable": true, "notes": "Hard - feature name (fine-grained tool streaming) not implied by query wording. eval/dataset.jsonlから流用。"}
+{"id": "q033", "query": "does Anthropic offer its own text embeddings API", "lang": "en", "category": "embeddings", "answerable": true, "notes": "Hard (trick question) - Anthropic recommends Voyage AI. eval/dataset.jsonlから流用。"}
+{"id": "q040", "query": "how to use Claude models through Google Cloud Vertex AI", "lang": "en", "category": "vertex_ai", "answerable": true, "notes": "Easy. eval/dataset.jsonlから流用。"}
+{"id": "t01", "query": "Claude APIのmessagesリクエストにある'retry_policy'パラメータで自動リトライ回数を設定する方法を教えてください", "lang": "ja", "category": "trap", "answerable": false, "notes": "トラップ: 'retry_policy'というリクエストパラメータはAnthropic APIに存在しない架空の機能。"}
+{"id": "t02", "query": "how do I set the 'creativity_level' parameter to control how imaginative Claude's responses are", "lang": "en", "category": "trap", "answerable": false, "notes": "Trap: 'creativity_level' is a fictional parameter; it does not exist in the Claude API (temperature/top_p do, but not this)."}
+{"id": "t03", "query": "Claude APIで送信したプロンプトを自動的に日本語へ翻訳してから処理する'auto_translate'モードの設定方法を教えてください", "lang": "ja", "category": "trap", "answerable": false, "notes": "トラップ: 'auto_translate'という自動翻訳モードはAnthropic APIに存在しない架空の機能。"}

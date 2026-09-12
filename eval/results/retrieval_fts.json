@@ -1,0 +1,1931 @@
+{
+  "backend": "fts",
+  "top_n": 10,
+  "overall": {
+    "n": 40,
+    "recall@1": 0.225,
+    "recall@3": 0.35,
+    "recall@5": 0.375,
+    "recall@10": 0.4,
+    "mrr@10": 0.2938
+  },
+  "by_lang": {
+    "ja": {
+      "n": 25,
+      "recall@1": 0.08,
+      "recall@3": 0.12,
+      "recall@5": 0.12,
+      "recall@10": 0.12,
+      "mrr@10": 0.0933
+    },
+    "en": {
+      "n": 15,
+      "recall@1": 0.4667,
+      "recall@3": 0.7333,
+      "recall@5": 0.8,
+      "recall@10": 0.8667,
+      "mrr@10": 0.6278
+    }
+  },
+  "queries": [
+    {
+      "id": "q001",
+      "query": "システムプロンプトをキャッシュして料金を節約するには",
+      "lang": "ja",
+      "category": "prompt_caching",
+      "notes": "易問。Prompt cachingページのトップレベル。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q002",
+      "query": "キャッシュの保存期間を1時間に伸ばすにはどうすればいい",
+      "lang": "ja",
+      "category": "prompt_caching",
+      "notes": "やや難: ページ内の特定セクション（TTL設定）を当てる必要がある。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q003",
+      "query": "ツールの定義を少し変えただけでプロンプトキャッシュは無効になりますか",
+      "lang": "ja",
+      "category": "prompt_caching",
+      "notes": "難問: prompt cachingとtool useの複合トピック。別ページ(tool-use-with-prompt-caching)を当てる必要がある。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q004",
+      "query": "Claudeからの応答をストリーミングで受け取る基本的な方法",
+      "lang": "ja",
+      "category": "streaming",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q005",
+      "query": "ツール使用中にストリーミングするには",
+      "lang": "ja",
+      "category": "streaming",
+      "notes": "難問: 'ツール入力のストリーミング'は別名Fine-grained tool streamingページ。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q006",
+      "query": "画像をAPIに渡してClaudeに見せる方法",
+      "lang": "ja",
+      "category": "vision",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q007",
+      "query": "Claudeが画像を見て苦手なこと・間違えやすいことは何ですか",
+      "lang": "ja",
+      "category": "vision",
+      "notes": "難問: Visionページの中のLimitationsセクションを当てる必要がある。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q008",
+      "query": "拡張思考（extended thinking）を使うための基本的な設定方法",
+      "lang": "ja",
+      "category": "extended_thinking",
+      "notes": "易問。",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000365:012833fef24b",
+          "score": 8.5661,
+          "heading_path": "Building with extended thinking > Next steps",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000351:a6e7db83adcf",
+          "score": 8.4459,
+          "heading_path": "Building with extended thinking > Max tokens and context window size with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000141:e207a889bebc",
+          "score": 8.4281,
+          "heading_path": "Adaptive thinking > Working with thinking blocks > Additional topics",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:001837:40b0363423b6",
+          "score": 8.2655,
+          "heading_path": "Context windows > The context window with extended thinking and tool use",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:001834:101e0bd57dcb",
+          "score": 8.2486,
+          "heading_path": "Context windows > The context window with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000259:4127ebd5aa19",
+          "score": 8.1755,
+          "heading_path": "Building with extended thinking > How to use extended thinking > Streaming thinking",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000281:fca00f8d3115",
+          "score": 8.1211,
+          "heading_path": "Building with extended thinking > Extended thinking with tool use > Toggling thinking modes in conversations",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000307:c4a96895dbd1",
+          "score": 8.1211,
+          "heading_path": "Building with extended thinking > Extended thinking with prompt caching > Understanding thinking block caching behavior",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000304:1097505fb660",
+          "score": 8.1192,
+          "heading_path": "Building with extended thinking > Extended thinking with prompt caching",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:000326:e1e8e33ec729",
+          "score": 8.0431,
+          "heading_path": "Building with extended thinking > Extended thinking with prompt caching > Understanding thinking block caching behavior",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "query": "拡張思考とツール使用を組み合わせて使うにはどうすればいい",
+      "lang": "ja",
+      "category": "extended_thinking",
+      "notes": "難問: 複数機能の組み合わせセクション。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q010",
+      "query": "思考ブロック（thinking block）はプロンプトキャッシュの対象になりますか",
+      "lang": "ja",
+      "category": "extended_thinking",
+      "notes": "難問: extended-thinkingページとprompt-cachingページの両方に関連記述があり、どちらでも正解。",
+      "first_hit_rank": null,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:027477:effdce678607",
+          "score": 5.6569,
+          "heading_path": "Messages > Domain Types",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:028603:f3d2113dae82",
+          "score": 5.5782,
+          "heading_path": "Messages > Domain Types",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000546:82ddfc06bae6",
+          "score": 5.5446,
+          "heading_path": "Streaming messages > Full HTTP stream response > Streaming request with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000514:585bd2a64a5a",
+          "score": 5.5379,
+          "heading_path": "Streaming messages > Content block delta types > Thinking delta",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000247:1ac9b921950c",
+          "score": 5.5348,
+          "heading_path": "Building with extended thinking > How to use extended thinking > Controlling thinking display",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:026387:f1674579c116",
+          "score": 5.5295,
+          "heading_path": "Messages > Domain Types",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000252:e20485e67f0c",
+          "score": 5.5165,
+          "heading_path": "Building with extended thinking > How to use extended thinking > Controlling thinking display",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000248:cfb0aef08922",
+          "score": 5.4952,
+          "heading_path": "Building with extended thinking > How to use extended thinking > Controlling thinking display",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000253:aec5e18f13d0",
+          "score": 5.4748,
+          "heading_path": "Building with extended thinking > How to use extended thinking > Controlling thinking display",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:009962:2932cb69c304",
+          "score": 5.4709,
+          "heading_path": "Messages > Domain Types",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q011",
+      "query": "コンピュータ操作ツール（computer use）の仕組みを知りたい",
+      "lang": "ja",
+      "category": "computer_use",
+      "notes": "易問。",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000838:c9c1633c1d97",
+          "score": 6.8708,
+          "heading_path": "Computer use tool > How to implement computer use > Start with the reference implementation",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000910:c0b5044da34d",
+          "score": 6.4929,
+          "heading_path": "Computer use tool > Pricing",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000856:fc90af0724fe",
+          "score": 6.4427,
+          "heading_path": "Computer use tool > How to implement computer use > Build a custom computer use environment",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000828:cb6a0d9f90b8",
+          "score": 6.4287,
+          "heading_path": "Computer use tool",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000835:4dd2cee3456f",
+          "score": 6.4286,
+          "heading_path": "Computer use tool > Quick start",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000854:17faf83cc3f8",
+          "score": 6.4175,
+          "heading_path": "Computer use tool > How to implement computer use > Tool parameters",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000907:f0f6953368a1",
+          "score": 6.3824,
+          "heading_path": "Computer use tool",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000909:c4f4b53c94ac",
+          "score": 6.3714,
+          "heading_path": "Computer use tool",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000836:683631abc9b4",
+          "score": 6.3517,
+          "heading_path": "Computer use tool > How computer use works",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:001401:daf01ad229d1",
+          "score": 6.3512,
+          "heading_path": "Tool combinations",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q012",
+      "query": "PDFファイルの中身をClaudeに解析させる方法",
+      "lang": "ja",
+      "category": "pdf",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q013",
+      "query": "Claudeの回答に元ネタの引用箇所を付けさせる方法",
+      "lang": "ja",
+      "category": "citations",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q014",
+      "query": "Web検索ツールをAPIで使う方法",
+      "lang": "ja",
+      "category": "web_search",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q015",
+      "query": "APIを呼び出す前にプロンプトのトークン数を数えておく方法",
+      "lang": "ja",
+      "category": "token_counting",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q016",
+      "query": "Claudeに毎回必ずJSON形式で出力させたい",
+      "lang": "ja",
+      "category": "structured_outputs",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q017",
+      "query": "Claude自体で文章の埋め込みベクトルを作ることはできますか",
+      "lang": "ja",
+      "category": "embeddings",
+      "notes": "難問（トリック）: AnthropicはEmbeddings APIを自社提供しておらずVoyage AIを案内している。ページ自体はEmbeddingsだが答えの核心は別セクション。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q018",
+      "query": "長い会話でツールの実行結果を自動的にコンテキストから消す仕組みはありますか",
+      "lang": "ja",
+      "category": "context_editing",
+      "notes": "難問: Context editingページ内の特定戦略（tool result clearing）を当てる必要がある。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q019",
+      "query": "コンテキストウィンドウの上限を超えるとどうなりますか",
+      "lang": "ja",
+      "category": "context_windows",
+      "notes": "難問: Context windowsページ内の特定セクション。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q020",
+      "query": "コード実行ツールが生成したファイルを取得する方法",
+      "lang": "ja",
+      "category": "code_execution",
+      "notes": "難問: Code execution toolページ内の特定セクション。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q021",
+      "query": "組織のAPIレートリミットの上限を確認する方法",
+      "lang": "ja",
+      "category": "rate_limits",
+      "notes": "難問（複数ページ）: /api/admin/rate_limits と /api/admin/workspaces/rate_limits の2ページが両方とも正解になりうる。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q022",
+      "query": "リモートのMCPサーバーにAPIから直接接続する方法",
+      "lang": "ja",
+      "category": "mcp_connector",
+      "notes": "難問（複数ページ）: agents-and-tools/mcp-connector と managed-agents/mcp-connector の2ページが両方とも正解になりうる。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q023",
+      "query": "複数のツールを1回のターンで同時に呼び出させる方法",
+      "lang": "ja",
+      "category": "parallel_tool_use",
+      "notes": "易問。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q024",
+      "query": "ツール呼び出しの引数が必ずJSON Schema通りになるよう厳密にする方法",
+      "lang": "ja",
+      "category": "strict_tool_use",
+      "notes": "やや難: 'strict'という用語を知らない前提の言い換え。",
+      "first_hit_rank": null,
+      "hits": []
+    },
+    {
+      "id": "q025",
+      "query": "Amazon BedrockからClaudeを呼び出す方法",
+      "lang": "ja",
+      "category": "bedrock",
+      "notes": "易問。",
+      "first_hit_rank": 3,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:002668:163a75d89455",
+          "score": 10.4902,
+          "heading_path": "Claude on Amazon Bedrock (legacy) > Additional resources",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:002757:f6283cfef3f3",
+          "score": 10.3763,
+          "heading_path": "Claude Platform on AWS > Migrating from Amazon Bedrock > What changes",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:002606:a4eb7de1dcb2",
+          "score": 10.2215,
+          "heading_path": "Claude in Amazon Bedrock",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:002588:54e49ca3b4e4",
+          "score": 10.1117,
+          "heading_path": "Claude in Amazon Bedrock",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:002642:c2ba369c2340",
+          "score": 10.0516,
+          "heading_path": "Claude on Amazon Bedrock (legacy) > Accessing Bedrock > List available models",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:002708:f9db73e9115c",
+          "score": 10.0178,
+          "heading_path": "Claude Platform on AWS > Claude Platform on AWS vs Amazon Bedrock",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:002764:6caa960c8613",
+          "score": 9.9757,
+          "heading_path": "Claude Platform on AWS > Additional resources",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:002706:c694ec594259",
+          "score": 9.9663,
+          "heading_path": "Claude Platform on AWS > Claude Platform on AWS vs Amazon Bedrock",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:002756:caeb8f6fc155",
+          "score": 9.8809,
+          "heading_path": "Claude Platform on AWS > Migrating from Amazon Bedrock > What changes",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:002707:af1f171439b1",
+          "score": 9.8131,
+          "heading_path": "Claude Platform on AWS > Claude Platform on AWS vs Amazon Bedrock",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q026",
+      "query": "how to cache system prompts to reduce API costs",
+      "lang": "en",
+      "category": "prompt_caching",
+      "notes": "Easy - top-level prompt caching page.",
+      "first_hit_rank": 2,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:003084:d6855a13150d",
+          "score": 28.6717,
+          "heading_path": "Session event stream > Debugging tips",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:001898:d5dafb534722",
+          "score": 18.9744,
+          "heading_path": "Prompt caching > Caching strategies and considerations > Cache limitations",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000197:598acb117088",
+          "score": 18.0891,
+          "heading_path": "Message Batches API > How to use the Message Batches API > Using prompt caching with Message Batches",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:001992:62f6b3fa4114",
+          "score": 17.2092,
+          "heading_path": "Token counting",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:001868:27fdd09941a9",
+          "score": 16.7335,
+          "heading_path": "Prompt caching",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:001877:400a273aa545",
+          "score": 16.4023,
+          "heading_path": "Prompt caching > How prompt caching works",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:001982:5003166f31cb",
+          "score": 16.3559,
+          "heading_path": "Prompt caching > FAQ",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000404:be68dc446ee6",
+          "score": 16.2998,
+          "heading_path": "Effort > Best practices",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000034:801dcc64ba42",
+          "score": 15.7873,
+          "heading_path": "Features overview > Context management",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:002095:a2186bc03ffc",
+          "score": 15.7143,
+          "heading_path": "PDF support",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q027",
+      "query": "what actions invalidate a prompt cache when using tools",
+      "lang": "en",
+      "category": "prompt_caching",
+      "notes": "Hard - specific section of the tool-use-with-prompt-caching page.",
+      "first_hit_rank": null,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000673:0da1112d6586",
+          "score": 21.0721,
+          "heading_path": "Structured outputs > Important considerations",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:001982:5003166f31cb",
+          "score": 20.4043,
+          "heading_path": "Prompt caching > FAQ",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:001901:1ecbefe46dcd",
+          "score": 19.9988,
+          "heading_path": "Prompt caching > Caching strategies and considerations > What invalidates the cache",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000933:d4f8d24bd487",
+          "score": 19.3968,
+          "heading_path": "Define tools > Controlling Claude's output > Forcing tool use",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:001902:8d2254bfb108",
+          "score": 17.9392,
+          "heading_path": "Prompt caching > Caching strategies and considerations > What invalidates the cache",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:001983:9c8ceee293e7",
+          "score": 17.6887,
+          "heading_path": "Prompt caching > FAQ",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:001903:4ee7576be9d6",
+          "score": 16.9638,
+          "heading_path": "Prompt caching > Caching strategies and considerations > What invalidates the cache",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000936:bf1facf3ee73",
+          "score": 16.1485,
+          "heading_path": "Define tools > Controlling Claude's output",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:001585:c9d81e497874",
+          "score": 16.0385,
+          "heading_path": "Cache diagnostics",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:002914:9beee601e50c",
+          "score": 15.7794,
+          "heading_path": "Security model > What Anthropic cannot do for you",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q028",
+      "query": "how to receive partial tool input as it streams in",
+      "lang": "en",
+      "category": "streaming",
+      "notes": "Hard - the feature name (fine-grained tool streaming) is not implied by the query wording.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:001331:501522a4bf6b",
+          "score": 21.0012,
+          "heading_path": "Fine-grained tool streaming > Accumulating tool input deltas",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000513:58aeaf1eec61",
+          "score": 18.1049,
+          "heading_path": "Streaming messages > Content block delta types > Input JSON delta",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:002800:ab1d8a27ce21",
+          "score": 17.2641,
+          "heading_path": "Get started with Claude Managed Agents",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:001690:31e646a689fd",
+          "score": 15.5801,
+          "heading_path": "Compaction > Working with compaction blocks > Streaming",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000821:6225734a4dbf",
+          "score": 15.4871,
+          "heading_path": "Code execution tool > Streaming",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:001435:c7c25d6729fd",
+          "score": 15.0671,
+          "heading_path": "Tool search tool",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:001344:9c495f0ae437",
+          "score": 14.5634,
+          "heading_path": "Fine-grained tool streaming",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:001316:bae28f0912b8",
+          "score": 14.3232,
+          "heading_path": "Fine-grained tool streaming",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000559:c0992d466d5d",
+          "score": 13.9315,
+          "heading_path": "Streaming messages > Error recovery",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:001313:f6313804aa46",
+          "score": 13.188,
+          "heading_path": "Web search tool > Streaming",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q029",
+      "query": "how does the computer use tool let Claude control a screen",
+      "lang": "en",
+      "category": "computer_use",
+      "notes": "Easy.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000889:2d84394c36ba",
+          "score": 19.8478,
+          "heading_path": "Computer use tool > How to implement computer use > Build a custom computer use environment",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000882:fd8de86e9081",
+          "score": 19.8323,
+          "heading_path": "Computer use tool > How to implement computer use > Build a custom computer use environment",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000881:e9d0fb8a73e0",
+          "score": 18.0907,
+          "heading_path": "Computer use tool > How to implement computer use > Build a custom computer use environment",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000851:e34eedef76d7",
+          "score": 17.5839,
+          "heading_path": "Computer use tool > How to implement computer use > Available actions",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000854:17faf83cc3f8",
+          "score": 17.5805,
+          "heading_path": "Computer use tool > How to implement computer use > Tool parameters",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000880:da4e3c68ecba",
+          "score": 16.6542,
+          "heading_path": "Computer use tool > How to implement computer use > Build a custom computer use environment",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000826:26b75aa6e306",
+          "score": 15.8428,
+          "heading_path": "Computer use tool",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:018436:95d87ded070a",
+          "score": 15.6918,
+          "heading_path": "Messages > Domain Types > Beta Tool Computer Use 20251124",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:018096:8a5c632a73ec",
+          "score": 15.6688,
+          "heading_path": "Messages > Create a Message > Parameters",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:018461:ec7131ed04ea",
+          "score": 15.6455,
+          "heading_path": "Messages > Domain Types > Beta Tool Union",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q030",
+      "query": "how to get Claude to cite the exact source passages in its answer",
+      "lang": "en",
+      "category": "citations",
+      "notes": "Easy.",
+      "first_hit_rank": 4,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:001399:7a2e2a792498",
+          "score": 29.7692,
+          "heading_path": "Tool combinations > Cite-then-fetch: web_search + web_fetch",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:001281:36c2356bf070",
+          "score": 22.0797,
+          "heading_path": "Web fetch tool > How to use web fetch",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000026:8481c2da3990",
+          "score": 18.2026,
+          "heading_path": "Features overview > Model capabilities",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000371:9e5bcda9e3a8",
+          "score": 15.6628,
+          "heading_path": "Citations > How citations work",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000459:43ad11ba04f4",
+          "score": 14.9003,
+          "heading_path": "Search results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000457:a6d75cb9e9c0",
+          "score": 14.1233,
+          "heading_path": "Search results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000372:73a92d5644e1",
+          "score": 12.3872,
+          "heading_path": "Citations > How citations work",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000458:7629fd06b2a4",
+          "score": 12.1473,
+          "heading_path": "Search results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000370:1cff9a810519",
+          "score": 11.9452,
+          "heading_path": "Citations",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:028294:65948818c824",
+          "score": 11.8316,
+          "heading_path": "Messages > Domain Types",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q031",
+      "query": "how to count tokens in a prompt before sending the request",
+      "lang": "en",
+      "category": "token_counting",
+      "notes": "Easy.",
+      "first_hit_rank": null,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000180:10df8a9067e0",
+          "score": 13.8953,
+          "heading_path": "Message Batches API > How to use the Message Batches API > Retrieving batch results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000182:ba8b32834b09",
+          "score": 13.8762,
+          "heading_path": "Message Batches API > How to use the Message Batches API > Retrieving batch results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000744:be8bd682d471",
+          "score": 13.5659,
+          "heading_path": "Advisor tool > Best practices > Prompting for coding and agent tasks",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000183:d1821772b938",
+          "score": 13.5103,
+          "heading_path": "Message Batches API > How to use the Message Batches API > Retrieving batch results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:001992:62f6b3fa4114",
+          "score": 13.5066,
+          "heading_path": "Token counting",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000035:3d661aead3fa",
+          "score": 13.1329,
+          "heading_path": "Features overview > Context management",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:003645:8b56bb40f007",
+          "score": 12.7943,
+          "heading_path": "API and data retention > Feature eligibility",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:002117:7c7d1a0e4c79",
+          "score": 11.6385,
+          "heading_path": "Vision > Before you upload > Calculate image costs",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:009840:76e107480a5f",
+          "score": 11.5807,
+          "heading_path": "Messages > Domain Types",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:001842:c2b5a6c34bb1",
+          "score": 11.5439,
+          "heading_path": "Context windows > Context window overflow behavior",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q032",
+      "query": "how to force Claude to always return valid JSON matching my schema",
+      "lang": "en",
+      "category": "structured_outputs",
+      "notes": "Easy.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000586:b95b0555c107",
+          "score": 22.447,
+          "heading_path": "Structured outputs > JSON outputs > How it works",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:001035:76ba4aaf8053",
+          "score": 18.8029,
+          "heading_path": "Strict tool use > How it works",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000585:9a72b57a9c99",
+          "score": 17.6138,
+          "heading_path": "Structured outputs > JSON outputs > Quick start",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000577:092d571648af",
+          "score": 17.5217,
+          "heading_path": "Structured outputs > JSON outputs",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000660:60cada36c1d2",
+          "score": 17.4776,
+          "heading_path": "Structured outputs > Using both features together",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:001024:1f5d004f0ca9",
+          "score": 15.4865,
+          "heading_path": "Strict tool use",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000661:7d8bbacddc69",
+          "score": 15.4604,
+          "heading_path": "Structured outputs > Using both features together",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:010725:f82b46d280d5",
+          "score": 14.8556,
+          "heading_path": "User Profiles > Create Enrollment URL",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:015200:472e00373063",
+          "score": 14.2852,
+          "heading_path": "Work > Stop Work > Example",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:030105:6aa50f9f3caf",
+          "score": 14.1465,
+          "heading_path": "Stop Work (Beta) (php) > Stop Work > Example",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q033",
+      "query": "does Anthropic offer its own text embeddings API",
+      "lang": "en",
+      "category": "embeddings",
+      "notes": "Hard (trick question) - Anthropic recommends Voyage AI rather than a first-party embeddings endpoint.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000405:24bca54502e5",
+          "score": 31.9319,
+          "heading_path": "Embeddings",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000410:160687fca3bf",
+          "score": 16.3894,
+          "heading_path": "Embeddings > Getting started with Voyage AI",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000411:de3d3a3b942a",
+          "score": 16.1349,
+          "heading_path": "Embeddings > Getting started with Voyage AI > Voyage HTTP API",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000421:1efcc1a2a9c6",
+          "score": 15.6684,
+          "heading_path": "Embeddings > FAQ",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:001431:761ae771d163",
+          "score": 15.1096,
+          "heading_path": "Tool search tool > Custom tool search implementation",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000412:f7b48cbcb338",
+          "score": 14.1763,
+          "heading_path": "Embeddings > Getting started with Voyage AI > AWS Marketplace",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000422:f18d024b01b7",
+          "score": 13.9665,
+          "heading_path": "Embeddings",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000414:a9a8afd41b6b",
+          "score": 13.4356,
+          "heading_path": "Embeddings > Quickstart example",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000408:9cec159b7d3e",
+          "score": 12.9808,
+          "heading_path": "Embeddings > Available models",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:000415:9b18fd845583",
+          "score": 12.8819,
+          "heading_path": "Embeddings > Quickstart example",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        }
+      ]
+    },
+    {
+      "id": "q034",
+      "query": "what happens to a conversation once it exceeds the context window limit",
+      "lang": "en",
+      "category": "context_windows",
+      "notes": "Hard - specific subsection of the context-windows page.",
+      "first_hit_rank": 2,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000349:424703e7fc73",
+          "score": 22.2211,
+          "heading_path": "Building with extended thinking > Max tokens and context window size with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:001842:c2b5a6c34bb1",
+          "score": 20.8732,
+          "heading_path": "Context windows > Context window overflow behavior",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:002069:50b6d55bbff7",
+          "score": 20.6871,
+          "heading_path": "Files API",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:001151:700881b69d93",
+          "score": 18.0023,
+          "heading_path": "Tool Runner (SDK) > Advanced usage",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:001347:17ccd83d072f",
+          "score": 17.7104,
+          "heading_path": "Manage tool context > The four approaches",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:001865:47397ad4b99b",
+          "score": 17.6181,
+          "heading_path": "Mid-conversation system messages > Combining with prompt caching",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:001749:29fa8163b089",
+          "score": 15.5755,
+          "heading_path": "Context editing",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:001834:101e0bd57dcb",
+          "score": 15.2188,
+          "heading_path": "Context windows > The context window with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:001833:194d977ed48b",
+          "score": 15.1738,
+          "heading_path": "Context windows > The context window with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:000052:997bc6044dfa",
+          "score": 15.0928,
+          "heading_path": "Handling stop reasons > Stop reason values > pause_turn",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q035",
+      "query": "how to download files that the code execution tool generated",
+      "lang": "en",
+      "category": "code_execution",
+      "notes": "Hard - specific subsection.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000790:e657a66dba04",
+          "score": 20.8254,
+          "heading_path": "Code execution tool > How to use the tool > Retrieve generated files",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000791:8295f6b70f1e",
+          "score": 19.7326,
+          "heading_path": "Code execution tool > How to use the tool > Retrieve generated files",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:002067:3f7f90aa513c",
+          "score": 19.504,
+          "heading_path": "Files API > How to use the Files API > Downloading a file",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:002068:2fd42fee0e7c",
+          "score": 19.1269,
+          "heading_path": "Files API",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:002066:e8903ea7a26f",
+          "score": 19.0219,
+          "heading_path": "Files API > How to use the Files API > Downloading a file",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:002295:7e841322c6f2",
+          "score": 18.6887,
+          "heading_path": "Using Agent Skills with the API > Using Skills in Messages",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:023017:6cc5a245a31e",
+          "score": 18.2949,
+          "heading_path": "Download a Claude-generated file",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000792:ea53b253628d",
+          "score": 17.9429,
+          "heading_path": "Code execution tool > How to use the tool > Retrieve generated files",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:003808:e55b7fbb479f",
+          "score": 17.825,
+          "heading_path": "Retrieve and delete chats, files, and projects > Retrieve files and artifacts",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:002205:5870c7c7034a",
+          "score": 17.658,
+          "heading_path": "Get started with Agent Skills in the API",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q036",
+      "query": "how do I check my organization's current API rate limits",
+      "lang": "en",
+      "category": "rate_limits",
+      "notes": "Hard (multi-page) - two distinct Rate Limits pages (org-level and workspace-level) both count.",
+      "first_hit_rank": 2,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000224:3e87495abd1c",
+          "score": 33.6592,
+          "heading_path": "Message Batches API > FAQ",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:003611:8f30feb50552",
+          "score": 30.1636,
+          "heading_path": "Rate Limits API",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:003339:2cacdbeb2bde",
+          "score": 29.7537,
+          "heading_path": "Workspaces > Workspace limits > Setting workspace limits",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000487:ff76d0141056",
+          "score": 26.1834,
+          "heading_path": "Search results > Method 2: Search results as top-level content > Example: Direct search results",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:003656:f3455826808c",
+          "score": 25.67,
+          "heading_path": "API and data retention > Frequently asked questions",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:003635:ee08cebd83fd",
+          "score": 24.1599,
+          "heading_path": "Usage and Cost API",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:003613:4f7cd3e2d772",
+          "score": 23.0746,
+          "heading_path": "Rate Limits API > Organization rate limits > Key concepts",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:003619:760cef810df1",
+          "score": 22.9888,
+          "heading_path": "Rate Limits API",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:024971:0da77786b680",
+          "score": 22.6959,
+          "heading_path": "List Organization Rate Limits",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:029182:0e09bbde1f0c",
+          "score": 22.5341,
+          "heading_path": "Rate Limits",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        }
+      ]
+    },
+    {
+      "id": "q037",
+      "query": "how to connect Claude to a remote MCP server over the API",
+      "lang": "en",
+      "category": "mcp_connector",
+      "notes": "Hard (multi-page) - agents-and-tools and managed-agents variants both count.",
+      "first_hit_rank": 2,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:002480:cd245cb28bc8",
+          "score": 29.9379,
+          "heading_path": "Remote MCP servers",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:002451:82fbdb23c2b0",
+          "score": 20.7423,
+          "heading_path": "MCP connector",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:002481:53e906f928d2",
+          "score": 18.3705,
+          "heading_path": "Remote MCP servers > Remote MCP server examples",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:003318:7541c9986727",
+          "score": 17.6631,
+          "heading_path": "Reference",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000032:ef3c2d17d8eb",
+          "score": 17.0222,
+          "heading_path": "Features overview > Tool infrastructure",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:002472:9f0aafb58a00",
+          "score": 16.5981,
+          "heading_path": "MCP connector > Client-side MCP helpers (TypeScript)",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:002482:429d0ca98bba",
+          "score": 16.2636,
+          "heading_path": "MCP tunnels",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:002485:645d081a98aa",
+          "score": 15.6198,
+          "heading_path": "MCP tunnels > Prerequisites",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:002484:05e589b91dc2",
+          "score": 15.4503,
+          "heading_path": "MCP tunnels > Prerequisites",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:002474:7314a6a9e35d",
+          "score": 14.7139,
+          "heading_path": "MCP connector > Client-side MCP helpers (TypeScript) > Use MCP tools",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        }
+      ]
+    },
+    {
+      "id": "q038",
+      "query": "how strict tool use guarantees my tool call arguments match the JSON schema",
+      "lang": "en",
+      "category": "strict_tool_use",
+      "notes": "Easy-medium.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:001024:1f5d004f0ca9",
+          "score": 29.3317,
+          "heading_path": "Strict tool use",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:001025:848f47916c79",
+          "score": 19.5591,
+          "heading_path": "Strict tool use",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000949:c402b2cf7ec2",
+          "score": 19.261,
+          "heading_path": "How tool use works > Where tools run",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:001208:4b1a77df8b69",
+          "score": 18.2023,
+          "heading_path": "Tutorial: Build a tool-using agent > Ring 1: Single tool, single turn",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000660:60cada36c1d2",
+          "score": 18.0556,
+          "heading_path": "Structured outputs > Using both features together",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:001211:b49bf92130dd",
+          "score": 17.531,
+          "heading_path": "Tutorial: Build a tool-using agent > Ring 1: Single tool, single turn",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:001204:93d2561f94f9",
+          "score": 17.4183,
+          "heading_path": "Tutorial: Build a tool-using agent > Ring 1: Single tool, single turn",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:015152:3f2182dc5d97",
+          "score": 16.8976,
+          "heading_path": "Messages > Domain Types > Beta Tool Union",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000913:bfcb04100835",
+          "score": 16.8845,
+          "heading_path": "Define tools > Specifying client tools",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:000662:c98f0e6e9c89",
+          "score": 16.2433,
+          "heading_path": "Structured outputs > Using both features together",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q039",
+      "query": "how does adaptive thinking differ from manually setting a thinking budget",
+      "lang": "en",
+      "category": "adaptive_thinking",
+      "notes": "Hard - specific comparison subsection of the adaptive-thinking page.",
+      "first_hit_rank": 6,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:000103:4c846b83dbbf",
+          "score": 32.3864,
+          "heading_path": "Adaptive thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:000705:5ec9fb6098d8",
+          "score": 23.6141,
+          "heading_path": "Task budgets",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:000106:1b4a15641005",
+          "score": 22.8338,
+          "heading_path": "Adaptive thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:000402:f38a09cbf8e1",
+          "score": 21.3364,
+          "heading_path": "Effort > Effort with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:000239:9b924851783a",
+          "score": 21.1155,
+          "heading_path": "Building with extended thinking > How to use extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:000129:884c007b1d7a",
+          "score": 21.1109,
+          "heading_path": "Adaptive thinking > Adaptive vs manual vs disabled thinking",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:000238:868a14372485",
+          "score": 21.0572,
+          "heading_path": "Building with extended thinking > How to use extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:000403:85e801a9a4df",
+          "score": 20.4773,
+          "heading_path": "Effort > Effort with extended thinking",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:000115:1c34c02961cc",
+          "score": 20.3848,
+          "heading_path": "Adaptive thinking > Adaptive thinking with the effort parameter",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:026389:de685eac4eeb",
+          "score": 20.1484,
+          "heading_path": "Messages > Domain Types > Thinking Config Param",
+          "source": "llms-full.txt",
+          "is_relevant": false
+        }
+      ]
+    },
+    {
+      "id": "q040",
+      "query": "how to use Claude models through Google Cloud Vertex AI",
+      "lang": "en",
+      "category": "vertex_ai",
+      "notes": "Easy.",
+      "first_hit_rank": 1,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "llms-full.txt:002669:1ccf14a5db53",
+          "score": 44.1332,
+          "heading_path": "Claude on Vertex AI",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "llms-full.txt:002703:9d04be48685c",
+          "score": 42.8195,
+          "heading_path": "Claude on Vertex AI",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "llms-full.txt:002672:418dc9f09532",
+          "score": 40.2545,
+          "heading_path": "Claude on Vertex AI",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "llms-full.txt:002681:8cd3fb397784",
+          "score": 40.1236,
+          "heading_path": "Claude on Vertex AI",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "llms-full.txt:002674:7bfdba9760b4",
+          "score": 37.9096,
+          "heading_path": "Claude on Vertex AI > Accessing Vertex AI > Model availability",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 6,
+          "chunk_id": "llms-full.txt:002673:1be3ce60bc58",
+          "score": 35.335,
+          "heading_path": "Claude on Vertex AI > Accessing Vertex AI > Model availability",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 7,
+          "chunk_id": "llms-full.txt:002679:8123f26ec2ad",
+          "score": 34.5862,
+          "heading_path": "Claude on Vertex AI > Accessing Vertex AI > Making requests",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 8,
+          "chunk_id": "llms-full.txt:002680:3a9ce8c8b899",
+          "score": 32.31,
+          "heading_path": "Claude on Vertex AI > Accessing Vertex AI > Making requests",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 9,
+          "chunk_id": "llms-full.txt:002678:3eb2323cb29b",
+          "score": 31.6982,
+          "heading_path": "Claude on Vertex AI > Accessing Vertex AI > Making requests",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        },
+        {
+          "rank": 10,
+          "chunk_id": "llms-full.txt:002676:7bb0b1d24f42",
+          "score": 30.0138,
+          "heading_path": "Claude on Vertex AI > Accessing Vertex AI > Making requests",
+          "source": "llms-full.txt",
+          "is_relevant": true
+        }
+      ]
+    }
+  ]
+}

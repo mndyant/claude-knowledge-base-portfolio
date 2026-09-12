@@ -1,0 +1,1643 @@
+{
+  "note": "goldクエリの正解ページを含むサンプルページ（全量再embeddingは環境制約で不可）でのページ単位評価。チャンク単位ではない。",
+  "sample": {
+    "seed": 20260716,
+    "total_pages": 1736,
+    "max_page_chars": 155000,
+    "mega_page_excluded_count": 84,
+    "sampled_page_count": 150,
+    "excluded_query_ids": []
+  },
+  "methods": {
+    "A_structured_400": {
+      "params": {
+        "min_tokens": 180,
+        "target_tokens": 400,
+        "max_tokens": 480,
+        "overlap_tokens": 50
+      },
+      "kind": "structured",
+      "chunk_stats": {
+        "chunk_count": 4288,
+        "avg_tokens": 351.9,
+        "max_tokens": 480,
+        "over_512_count": 0
+      },
+      "metrics": {
+        "n": 40,
+        "recall@1": 0.725,
+        "recall@3": 0.875,
+        "recall@5": 0.9,
+        "recall@10": 0.925,
+        "mrr@10": 0.8078
+      },
+      "queries": [
+        {
+          "id": "q001",
+          "query": "システムプロンプトをキャッシュして料金を節約するには",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q002",
+          "query": "キャッシュの保存期間を1時間に伸ばすにはどうすればいい",
+          "lang": "ja",
+          "first_hit_rank": 9,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/retrieve",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/archive",
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events",
+            "https://platform.claude.com/docs/en/api/ruby/beta/environments/work/retrieve"
+          ]
+        },
+        {
+          "id": "q003",
+          "query": "ツールの定義を少し変えただけでプロンプトキャッシュは無効になりますか",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference"
+          ]
+        },
+        {
+          "id": "q004",
+          "query": "Claudeからの応答をストリーミングで受け取る基本的な方法",
+          "lang": "ja",
+          "first_hit_rank": 5,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming"
+          ]
+        },
+        {
+          "id": "q005",
+          "query": "ツール使用中にストリーミングするには",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+          ]
+        },
+        {
+          "id": "q006",
+          "query": "画像をAPIに渡してClaudeに見せる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+          ]
+        },
+        {
+          "id": "q007",
+          "query": "Claudeが画像を見て苦手なこと・間違えやすいことは何ですか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool"
+          ]
+        },
+        {
+          "id": "q008",
+          "query": "拡張思考（extended thinking）を使うための基本的な設定方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+          ]
+        },
+        {
+          "id": "q009",
+          "query": "拡張思考とツール使用を組み合わせて使うにはどうすればいい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming"
+          ]
+        },
+        {
+          "id": "q010",
+          "query": "思考ブロック（thinking block）はプロンプトキャッシュの対象になりますか",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows"
+          ]
+        },
+        {
+          "id": "q011",
+          "query": "コンピュータ操作ツール（computer use）の仕組みを知りたい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+          ]
+        },
+        {
+          "id": "q012",
+          "query": "PDFファイルの中身をClaudeに解析させる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/files"
+          ]
+        },
+        {
+          "id": "q013",
+          "query": "Claudeの回答に元ネタの引用箇所を付けさせる方法",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q014",
+          "query": "Web検索ツールをAPIで使う方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/php/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q015",
+          "query": "APIを呼び出す前にプロンプトのトークン数を数えておく方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/php/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/php/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q016",
+          "query": "Claudeに毎回必ずJSON形式で出力させたい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/files"
+          ]
+        },
+        {
+          "id": "q017",
+          "query": "Claude自体で文章の埋め込みベクトルを作ることはできますか",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy"
+          ]
+        },
+        {
+          "id": "q018",
+          "query": "長い会話でツールの実行結果を自動的にコンテキストから消す仕組みはありますか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/skills-guide"
+          ]
+        },
+        {
+          "id": "q019",
+          "query": "コンテキストウィンドウの上限を超えるとどうなりますか",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories"
+          ]
+        },
+        {
+          "id": "q020",
+          "query": "コード実行ツールが生成したファイルを取得する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/api/go/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/ruby/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/files"
+          ]
+        },
+        {
+          "id": "q021",
+          "query": "組織のAPIレートリミットの上限を確認する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/admin/rate_limits",
+            "https://platform.claude.com/docs/en/manage-claude/rate-limits-api",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits/list",
+            "https://platform.claude.com/docs/en/build-with-claude/search-results",
+            "https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list"
+          ]
+        },
+        {
+          "id": "q022",
+          "query": "リモートのMCPサーバーにAPIから直接接続する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+            "https://platform.claude.com/docs/en/managed-agents/reference",
+            "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes"
+          ]
+        },
+        {
+          "id": "q023",
+          "query": "複数のツールを1回のターンで同時に呼び出させる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling"
+          ]
+        },
+        {
+          "id": "q024",
+          "query": "ツール呼び出しの引数が必ずJSON Schema通りになるよう厳密にする方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/csharp/messages/create",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q025",
+          "query": "Amazon BedrockからClaudeを呼び出す方法",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool"
+          ]
+        },
+        {
+          "id": "q026",
+          "query": "how to cache system prompts to reduce API costs",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages"
+          ]
+        },
+        {
+          "id": "q027",
+          "query": "what actions invalidate a prompt cache when using tools",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q028",
+          "query": "how to receive partial tool input as it streams in",
+          "lang": "en",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling"
+          ]
+        },
+        {
+          "id": "q029",
+          "query": "how does the computer use tool let Claude control a screen",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use"
+          ]
+        },
+        {
+          "id": "q030",
+          "query": "how to get Claude to cite the exact source passages in its answer",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q031",
+          "query": "how to count tokens in a prompt before sending the request",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q032",
+          "query": "how to force Claude to always return valid JSON matching my schema",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+          ]
+        },
+        {
+          "id": "q033",
+          "query": "does Anthropic offer its own text embeddings API",
+          "lang": "en",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry"
+          ]
+        },
+        {
+          "id": "q034",
+          "query": "what happens to a conversation once it exceeds the context window limit",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool"
+          ]
+        },
+        {
+          "id": "q035",
+          "query": "how to download files that the code execution tool generated",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q036",
+          "query": "how do I check my organization's current API rate limits",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/manage-claude/rate-limits-api",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits/list",
+            "https://platform.claude.com/docs/en/manage-claude/admin-api",
+            "https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits"
+          ]
+        },
+        {
+          "id": "q037",
+          "query": "how to connect Claude to a remote MCP server over the API",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+            "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool"
+          ]
+        },
+        {
+          "id": "q038",
+          "query": "how strict tool use guarantees my tool call arguments match the JSON schema",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/api/php/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+          ]
+        },
+        {
+          "id": "q039",
+          "query": "how does adaptive thinking differ from manually setting a thinking budget",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q040",
+          "query": "how to use Claude models through Google Cloud Vertex AI",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+          ]
+        }
+      ]
+    },
+    "B_structured_200": {
+      "params": {
+        "min_tokens": 90,
+        "target_tokens": 200,
+        "max_tokens": 240,
+        "overlap_tokens": 30
+      },
+      "kind": "structured",
+      "chunk_stats": {
+        "chunk_count": 8395,
+        "avg_tokens": 181.9,
+        "max_tokens": 240,
+        "over_512_count": 0
+      },
+      "metrics": {
+        "n": 40,
+        "recall@1": 0.825,
+        "recall@3": 0.925,
+        "recall@5": 0.925,
+        "recall@10": 0.925,
+        "mrr@10": 0.875
+      },
+      "queries": [
+        {
+          "id": "q001",
+          "query": "システムプロンプトをキャッシュして料金を節約するには",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories",
+            "https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming"
+          ]
+        },
+        {
+          "id": "q002",
+          "query": "キャッシュの保存期間を1時間に伸ばすにはどうすればいい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories",
+            "https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/archive"
+          ]
+        },
+        {
+          "id": "q003",
+          "query": "ツールの定義を少し変えただけでプロンプトキャッシュは無効になりますか",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create"
+          ]
+        },
+        {
+          "id": "q004",
+          "query": "Claudeからの応答をストリーミングで受け取る基本的な方法",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction"
+          ]
+        },
+        {
+          "id": "q005",
+          "query": "ツール使用中にストリーミングするには",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+            "https://platform.claude.com/docs/en/api/csharp/messages/create"
+          ]
+        },
+        {
+          "id": "q006",
+          "query": "画像をAPIに渡してClaudeに見せる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates"
+          ]
+        },
+        {
+          "id": "q007",
+          "query": "Claudeが画像を見て苦手なこと・間違えやすいことは何ですか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use"
+          ]
+        },
+        {
+          "id": "q008",
+          "query": "拡張思考（extended thinking）を使うための基本的な設定方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/api/csharp/messages/create",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create"
+          ]
+        },
+        {
+          "id": "q009",
+          "query": "拡張思考とツール使用を組み合わせて使うにはどうすればいい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+          ]
+        },
+        {
+          "id": "q010",
+          "query": "思考ブロック（thinking block）はプロンプトキャッシュの対象になりますか",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+          ]
+        },
+        {
+          "id": "q011",
+          "query": "コンピュータ操作ツール（computer use）の仕組みを知りたい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference"
+          ]
+        },
+        {
+          "id": "q012",
+          "query": "PDFファイルの中身をClaudeに解析させる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/citations"
+          ]
+        },
+        {
+          "id": "q013",
+          "query": "Claudeの回答に元ネタの引用箇所を付けさせる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/search-results",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages"
+          ]
+        },
+        {
+          "id": "q014",
+          "query": "Web検索ツールをAPIで使う方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/api/csharp/messages/create",
+            "https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q015",
+          "query": "APIを呼び出す前にプロンプトのトークン数を数えておく方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/php/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q016",
+          "query": "Claudeに毎回必ずJSON形式で出力させたい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use"
+          ]
+        },
+        {
+          "id": "q017",
+          "query": "Claude自体で文章の埋め込みベクトルを作ることはできますか",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+          ]
+        },
+        {
+          "id": "q018",
+          "query": "長い会話でツールの実行結果を自動的にコンテキストから消す仕組みはありますか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/cancel",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/ruby/beta/environments/delete",
+            "https://platform.claude.com/docs/en/api/beta/environments/delete"
+          ]
+        },
+        {
+          "id": "q019",
+          "query": "コンテキストウィンドウの上限を超えるとどうなりますか",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+          ]
+        },
+        {
+          "id": "q020",
+          "query": "コード実行ツールが生成したファイルを取得する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/api/go/messages/batches/results",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create",
+            "https://platform.claude.com/docs/en/build-with-claude/skills-guide"
+          ]
+        },
+        {
+          "id": "q021",
+          "query": "組織のAPIレートリミットの上限を確認する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/manage-claude/rate-limits-api",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits/list",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits",
+            "https://platform.claude.com/docs/en/api/php/beta/sessions/events",
+            "https://platform.claude.com/docs/en/api/ruby/beta/environments/archive"
+          ]
+        },
+        {
+          "id": "q022",
+          "query": "リモートのMCPサーバーにAPIから直接接続する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes",
+            "https://platform.claude.com/docs/en/api/php/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/managed-agents/reference"
+          ]
+        },
+        {
+          "id": "q023",
+          "query": "複数のツールを1回のターンで同時に呼び出させる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context"
+          ]
+        },
+        {
+          "id": "q024",
+          "query": "ツール呼び出しの引数が必ずJSON Schema通りになるよう厳密にする方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/csharp/messages/create"
+          ]
+        },
+        {
+          "id": "q025",
+          "query": "Amazon BedrockからClaudeを呼び出す方法",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai"
+          ]
+        },
+        {
+          "id": "q026",
+          "query": "how to cache system prompts to reduce API costs",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+          ]
+        },
+        {
+          "id": "q027",
+          "query": "what actions invalidate a prompt cache when using tools",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking"
+          ]
+        },
+        {
+          "id": "q028",
+          "query": "how to receive partial tool input as it streams in",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/api/cli/beta/sessions/threads/events/stream",
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events"
+          ]
+        },
+        {
+          "id": "q029",
+          "query": "how does the computer use tool let Claude control a screen",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use"
+          ]
+        },
+        {
+          "id": "q030",
+          "query": "how to get Claude to cite the exact source passages in its answer",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/search-results",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+          ]
+        },
+        {
+          "id": "q031",
+          "query": "how to count tokens in a prompt before sending the request",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/php/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/cli/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q032",
+          "query": "how to force Claude to always return valid JSON matching my schema",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling"
+          ]
+        },
+        {
+          "id": "q033",
+          "query": "does Anthropic offer its own text embeddings API",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+            "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+            "https://platform.claude.com/docs/en/build-with-claude/search-results",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/api/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q034",
+          "query": "what happens to a conversation once it exceeds the context window limit",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+          ]
+        },
+        {
+          "id": "q035",
+          "query": "how to download files that the code execution tool generated",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+            "https://platform.claude.com/docs/en/api/go/messages/batches/results",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create"
+          ]
+        },
+        {
+          "id": "q036",
+          "query": "how do I check my organization's current API rate limits",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/admin/rate_limits/list",
+            "https://platform.claude.com/docs/en/manage-claude/rate-limits-api",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits",
+            "https://platform.claude.com/docs/en/manage-claude/admin-api",
+            "https://platform.claude.com/docs/en/managed-agents/reference"
+          ]
+        },
+        {
+          "id": "q037",
+          "query": "how to connect Claude to a remote MCP server over the API",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/reference",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry",
+            "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes"
+          ]
+        },
+        {
+          "id": "q038",
+          "query": "how strict tool use guarantees my tool call arguments match the JSON schema",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/api/csharp/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/csharp/messages/create",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+          ]
+        },
+        {
+          "id": "q039",
+          "query": "how does adaptive thinking differ from manually setting a thinking budget",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/api/python/messages/batches/create",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create"
+          ]
+        },
+        {
+          "id": "q040",
+          "query": "how to use Claude models through Google Cloud Vertex AI",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry",
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy"
+          ]
+        }
+      ]
+    },
+    "C_naive_400": {
+      "params": {
+        "window_tokens": 400,
+        "overlap_tokens": 50
+      },
+      "kind": "naive",
+      "chunk_stats": {
+        "chunk_count": 4025,
+        "avg_tokens": 392.5,
+        "max_tokens": 401,
+        "over_512_count": 0
+      },
+      "metrics": {
+        "n": 40,
+        "recall@1": 0.625,
+        "recall@3": 0.9,
+        "recall@5": 0.95,
+        "recall@10": 0.95,
+        "mrr@10": 0.7529
+      },
+      "queries": [
+        {
+          "id": "q001",
+          "query": "システムプロンプトをキャッシュして料金を節約するには",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q002",
+          "query": "キャッシュの保存期間を1時間に伸ばすにはどうすればいい",
+          "lang": "ja",
+          "first_hit_rank": 3,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/retrieve",
+            "https://platform.claude.com/docs/en/api/admin/cost_report/retrieve",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/api/php/beta/sessions/threads/retrieve",
+            "https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memory_versions/retrieve"
+          ]
+        },
+        {
+          "id": "q003",
+          "query": "ツールの定義を少し変えただけでプロンプトキャッシュは無効になりますか",
+          "lang": "ja",
+          "first_hit_rank": 4,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/api/php/beta/sessions/events",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q004",
+          "query": "Claudeからの応答をストリーミングで受け取る基本的な方法",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool"
+          ]
+        },
+        {
+          "id": "q005",
+          "query": "ツール使用中にストリーミングするには",
+          "lang": "ja",
+          "first_hit_rank": 3,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/api/ruby/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q006",
+          "query": "画像をAPIに渡してClaudeに見せる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+            "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+          ]
+        },
+        {
+          "id": "q007",
+          "query": "Claudeが画像を見て苦手なこと・間違えやすいことは何ですか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+          ]
+        },
+        {
+          "id": "q008",
+          "query": "拡張思考（extended thinking）を使うための基本的な設定方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q009",
+          "query": "拡張思考とツール使用を組み合わせて使うにはどうすればいい",
+          "lang": "ja",
+          "first_hit_rank": 3,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/php/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+          ]
+        },
+        {
+          "id": "q010",
+          "query": "思考ブロック（thinking block）はプロンプトキャッシュの対象になりますか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/api/ruby/beta/environments/archive",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q011",
+          "query": "コンピュータ操作ツール（computer use）の仕組みを知りたい",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use"
+          ]
+        },
+        {
+          "id": "q012",
+          "query": "PDFファイルの中身をClaudeに解析させる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool"
+          ]
+        },
+        {
+          "id": "q013",
+          "query": "Claudeの回答に元ネタの引用箇所を付けさせる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+          ]
+        },
+        {
+          "id": "q014",
+          "query": "Web検索ツールをAPIで使う方法",
+          "lang": "ja",
+          "first_hit_rank": 3,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/go/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q015",
+          "query": "APIを呼び出す前にプロンプトのトークン数を数えておく方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/php/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/php/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q016",
+          "query": "Claudeに毎回必ずJSON形式で出力させたい",
+          "lang": "ja",
+          "first_hit_rank": 5,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/typescript/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/php/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+          ]
+        },
+        {
+          "id": "q017",
+          "query": "Claude自体で文章の埋め込みベクトルを作ることはできますか",
+          "lang": "ja",
+          "first_hit_rank": null,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+          ]
+        },
+        {
+          "id": "q018",
+          "query": "長い会話でツールの実行結果を自動的にコンテキストから消す仕組みはありますか",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context"
+          ]
+        },
+        {
+          "id": "q019",
+          "query": "コンテキストウィンドウの上限を超えるとどうなりますか",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/api/java/completions",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+          ]
+        },
+        {
+          "id": "q020",
+          "query": "コード実行ツールが生成したファイルを取得する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+            "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+            "https://platform.claude.com/docs/en/api/ruby/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q021",
+          "query": "組織のAPIレートリミットの上限を確認する方法",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+            "https://platform.claude.com/docs/en/manage-claude/rate-limits-api",
+            "https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits",
+            "https://platform.claude.com/docs/en/manage-claude/admin-api-keys"
+          ]
+        },
+        {
+          "id": "q022",
+          "query": "リモートのMCPサーバーにAPIから直接接続する方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+            "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes",
+            "https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve"
+          ]
+        },
+        {
+          "id": "q023",
+          "query": "複数のツールを1回のターンで同時に呼び出させる方法",
+          "lang": "ja",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+          ]
+        },
+        {
+          "id": "q024",
+          "query": "ツール呼び出しの引数が必ずJSON Schema通りになるよう厳密にする方法",
+          "lang": "ja",
+          "first_hit_rank": 3,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/api/csharp/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/ruby/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q025",
+          "query": "Amazon BedrockからClaudeを呼び出す方法",
+          "lang": "ja",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling"
+          ]
+        },
+        {
+          "id": "q026",
+          "query": "how to cache system prompts to reduce API costs",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction"
+          ]
+        },
+        {
+          "id": "q027",
+          "query": "what actions invalidate a prompt cache when using tools",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+            "https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages"
+          ]
+        },
+        {
+          "id": "q028",
+          "query": "how to receive partial tool input as it streams in",
+          "lang": "en",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+            "https://platform.claude.com/docs/en/build-with-claude/streaming",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create",
+            "https://platform.claude.com/docs/en/api/go/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q029",
+          "query": "how does the computer use tool let Claude control a screen",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use"
+          ]
+        },
+        {
+          "id": "q030",
+          "query": "how to get Claude to cite the exact source passages in its answer",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/citations",
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool"
+          ]
+        },
+        {
+          "id": "q031",
+          "query": "how to count tokens in a prompt before sending the request",
+          "lang": "en",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/php/beta/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q032",
+          "query": "how to force Claude to always return valid JSON matching my schema",
+          "lang": "en",
+          "first_hit_rank": 2,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/api/python/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/beta/messages/batches/create"
+          ]
+        },
+        {
+          "id": "q033",
+          "query": "does Anthropic offer its own text embeddings API",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+            "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/build-with-claude/batch-processing",
+            "https://platform.claude.com/docs/en/api/beta/environments/delete"
+          ]
+        },
+        {
+          "id": "q034",
+          "query": "what happens to a conversation once it exceeds the context window limit",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/compaction",
+            "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
+            "https://platform.claude.com/docs/en/build-with-claude/context-editing"
+          ]
+        },
+        {
+          "id": "q035",
+          "query": "how to download files that the code execution tool generated",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/files",
+            "https://platform.claude.com/docs/en/api/messages/count_tokens",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+            "https://platform.claude.com/docs/en/api/cli/messages/batches/results"
+          ]
+        },
+        {
+          "id": "q036",
+          "query": "how do I check my organization's current API rate limits",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/manage-claude/rate-limits-api",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits",
+            "https://platform.claude.com/docs/en/api/admin/rate_limits/list",
+            "https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits",
+            "https://platform.claude.com/docs/en/manage-claude/admin-api"
+          ]
+        },
+        {
+          "id": "q037",
+          "query": "how to connect Claude to a remote MCP server over the API",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+            "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+            "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool",
+            "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes"
+          ]
+        },
+        {
+          "id": "q038",
+          "query": "how strict tool use guarantees my tool call arguments match the JSON schema",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+            "https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/java/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q039",
+          "query": "how does adaptive thinking differ from manually setting a thinking budget",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+            "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+            "https://platform.claude.com/docs/en/api/beta/messages/count_tokens",
+            "https://platform.claude.com/docs/en/api/ruby/messages/count_tokens"
+          ]
+        },
+        {
+          "id": "q040",
+          "query": "how to use Claude models through Google Cloud Vertex AI",
+          "lang": "en",
+          "first_hit_rank": 1,
+          "top_pages": [
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+            "https://platform.claude.com/docs/en/build-with-claude/vision",
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+            "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry"
+          ]
+        }
+      ]
+    }
+  }
+}

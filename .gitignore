@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# 環境変数（コミット禁止）
+.env
+
+# モデルキャッシュ（容量大・再ダウンロード可）
+.cache/
+
+# テスト用一時データ
+chroma_test/
+.pytest_cache/
+.pytest_tmp/
+pytest-cache-files-*/
+.coverage
+coverage.xml
+htmlcov/
+logs/
+
+# RAG前処理の巨大生成物
+llms-full.txt
+data/processed/*.jsonl
+chroma-data/
+
+# ChromaDBデータ
+# chroma-data/  ← Git管理する場合はコメントアウト
+
+# RAG前処理の中間ファイル・実行ログ
+data/processed/split-parts/
+split_run.log
+reembed_run.log
+
+# 検索品質評価: FTS5インデックス・page urlキャッシュ・クエリ単位の中間結果
+# （eval/results/ はポートフォリオの証拠として公開するためGit管理する）
+eval/cache/
+
+# 取得コンテンツ（生成物・llms-full.mdは~90MBでコミット不可）
+knowledge/**/*.md
+
+# Public distribution: local runtime and operational state
+.venv/
+.env.*
+!.env.example
+*.sqlite3
+*.db
+data/digest_state.json
+data/processed/
+.portfolio-demo/

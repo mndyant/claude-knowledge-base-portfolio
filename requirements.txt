@@ -1,0 +1,33 @@
+# 取得・整形
+requests==2.32.*
+beautifulsoup4==4.12.*
+feedparser==6.0.*
+tenacity==8.*              # リトライ処理
+
+# ベクトル化
+sentence-transformers==3.*
+torch==2.*                 # CPU版で十分
+
+# ベクトルDB（ローカルファイルDB・サーバー不要）
+chromadb==1.5.*
+
+# API
+fastapi==0.115.*
+uvicorn[standard]==0.30.*
+pydantic==2.*
+
+# 日本語ダイジェスト（digest.py・Gemini無料枠）
+google-genai
+
+# 環境変数
+python-dotenv==1.*         # .envファイル読み込み
+
+# テスト
+pytest==8.*
+pytest-cov
+requests-mock
+httpx
+
+# 開発ツール
+black
+ruff
