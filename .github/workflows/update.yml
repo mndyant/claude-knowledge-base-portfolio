@@ -14,8 +14,6 @@ jobs:
     timeout-minutes: 45
     permissions:
       contents: write
-    env:
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,7 +44,7 @@ jobs:
             --stats data/processed/stats.json
 
       # tokenizerが黙ってchar/4へ劣化すると512超過チャンクが無警告で
-      # 切り捨てられ検索精度が壊れる（HANDOFF.md §1）。embed前に必ず検証する。
+      # 切り捨てられ検索精度が壊れる。embed前に必ず検証する。
       - name: Verify chunking stats
         run: |
           python - <<'PY'
@@ -95,13 +93,6 @@ jobs:
               raise SystemExit("ChromaDB collection is empty")
           PY
 
-      - name: Upload ChromaDB artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: chroma-data
-          path: chroma-data
-          retention-days: 7
-
       - name: Upload processing stats
         uses: actions/upload-artifact@v4
         with:
@@ -113,7 +104,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add knowledge data/processed/stats.json
+          # 公開版の.gitignoreはknowledge/**/*.mdとdata/processed/を除外して
+          # おり、除外パスを明示的にgit addすると失敗する（exit 1）。
+          # 追跡可能なパスだけをステージし、公開構成では「No changes」で終える。
+          for path in knowledge data/processed/stats.json; do
+            if [ -e "$path" ] && ! git check-ignore -q "$path"; then
+              git add "$path"
+            fi
+          done
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else

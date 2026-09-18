@@ -9,6 +9,10 @@
 - [検索・回答品質の評価記録](docs/EVAL.md)
 - [Windows検証の範囲](docs/WINDOWS_VALIDATION.md)
 
+![日本語の質問から英語の根拠文書を検索したデモ画面](docs/images/sample-search.png)
+
+自作サンプル4文書での画面です。回答生成を使わず、原文を展開して根拠を確認できます。一般公開の常設デモはなく、以下の手順でローカル起動します。
+
 ## まず動かす：小さなサンプル検索
 
 自作サンプル4件を、実際の `multilingual-e5-base` とChromaDBで検索します。個人用DB・取得文書・APIキーは不要です。サンプルの順位は動作確認用で、検索品質ベンチマークとは別です。
@@ -18,7 +22,6 @@ Windows PowerShellでリポジトリのルートから実行します。既存�
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m scripts.portfolio_demo --serve
 ```
 
 [検索画面](http://127.0.0.1:8001/) ／ [Swagger UI](http://127.0.0.1:8001/docs)
@@ -29,6 +32,12 @@ python -m venv .venv
 
 ```powershell
 .\.venv\Scripts\python.exe -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('intfloat/multilingual-e5-base')"
+```
+
+モデルを用意したら起動します。キャッシュが見つからない場合は、上のモデル取得を同じ仮想環境・ユーザーで実行してください。
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.portfolio_demo --serve
 ```
 
 デモは回答生成用の環境変数を使わず、外部LLM・通知サービスを呼びません。終了は `Ctrl+C` です。
@@ -84,7 +93,9 @@ flowchart LR
 {"query":"画像をAPIに渡す方法", "top_k":5, "generate_answer":false}
 ```
 
-`generate_answer: false` はクエリ展開・回答生成を含め外部LLMを呼びません。通常起動で回答生成を選ぶ場合は `GEMINI_API_KEY` が必要です。API側の既定値は互換性のため `true`、画面側は未選択です。利用APIの条件・モデルの提供状況は実接続前に確認してください。
+`generate_answer: false` はクエリ展開・回答生成を含め外部LLMを呼びません。通常起動で回答生成を選ぶ場合は `GEMINI_API_KEY` が必要です。既定値はAPI・画面とも無効（検索のみ）で、`generate_answer: true` を明示した場合だけ回答を生成します。利用APIの条件・モデルの提供状況は実接続前に確認してください。
+
+設定は起動プロセスの環境変数から読みます。`.env.example` は変数名の参考で、`.env` の自動読込はしません。APIキーはOSや実行環境の秘密設定で渡し、コマンド例・Git履歴には記載しないでください。検索クエリの上限は4000文字です。
 
 ## テスト
 
@@ -97,3 +108,5 @@ flowchart LR
 ## 公開範囲
 
 更新・配信ワークフローは手動実行です。資格情報・既存DB・取得コンテンツ・個人用の運用資料は同梱しません。コードの公開ライセンスは著作権者表記とともに確定する予定です。公式文書そのものの権利とコードのライセンスは別です。
+
+公開構成では配信状態をGitに保存しないため、手動digest workflowは毎回初回の記録のみとなり、継続配信には使えません。実運用には別途、状態の永続化と通知先の設定が必要です。更新workflowは文書・DBをダウンロード可能なartifactとして公開しません。

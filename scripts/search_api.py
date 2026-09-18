@@ -45,10 +45,17 @@ NOT_INITIALIZED_MESSAGE = (
 class SearchRequest(BaseModel):
     """検索リクエストのスキーマ。"""
 
-    query: str = Field(..., min_length=1, description="検索クエリ（空文字不可）")
+    # 埋め込みモデルの入力は512トークンで打ち切られるため、それを大きく
+    # 超える入力はトークナイズ費用だけが増える。上限で弾いて負荷を抑える。
+    query: str = Field(
+        ...,
+        min_length=1,
+        max_length=4000,
+        description="検索クエリ（空文字不可・最大4000文字）",
+    )
     top_k: int = Field(5, ge=1, le=20, description="返却する上位件数（1〜20）")
     category: str | None = Field(None, description="カテゴリで絞り込む（任意）")
-    generate_answer: bool = Field(True, description="検索結果を根拠に回答を生成する")
+    generate_answer: bool = Field(False, description="明示的に有効にした場合のみ回答を生成する")
 
 
 class SearchResult(BaseModel):
@@ -262,7 +269,7 @@ def _generate_grounded_answer(results: list[SearchResult], query: str) -> str | 
         if (
             not answer
             or not citations
-            or any(value > len(results) for value in citations)
+            or any(value < 1 or value > len(results) for value in citations)
         ):
             raise ValueError("回答に有効な引用番号がありません")
 

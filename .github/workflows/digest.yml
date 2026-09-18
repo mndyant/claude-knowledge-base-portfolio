@@ -39,6 +39,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 公開版の.gitignoreは配信状態を追跡しない（git addが失敗する）。
+          # この構成では状態が実行間で持ち越されず、毎回「初回実行（投稿なし）」
+          # のベースライン初期化になる。実配信する場合は自分のフォークで
+          # .gitignoreからdata/digest_state.jsonを外すこと。
+          if git check-ignore -q data/digest_state.json; then
+            echo "digest state is gitignored; skipping commit"
+            exit 0
+          fi
           git add data/digest_state.json
           git diff --cached --quiet && exit 0
           git commit -m "chore(digest): update digest state [skip ci]"

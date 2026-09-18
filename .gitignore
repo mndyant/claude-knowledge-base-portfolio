@@ -48,3 +48,15 @@ knowledge/**/*.md
 data/digest_state.json
 data/processed/
 .portfolio-demo/
+
+# Local editor settings, logs and database sidecars
+.vscode/
+.idea/
+*.log
+*.db-wal
+*.db-shm
+*.sqlite3-wal
+*.sqlite3-shm
+*.pem
+*.key
+credentials*.json

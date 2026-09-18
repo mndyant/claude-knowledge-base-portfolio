@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from scripts import embed, search_api
 from scripts.embed import Chunk, _make_chunk_id, get_or_create_collection
 
@@ -199,6 +201,35 @@ def test_search_only_never_calls_generation(api_client, monkeypatch):
     assert response.json()["total"] == 3
 
 
+def test_default_search_never_calls_generation(api_client, monkeypatch):
+    """回答生成を省略したAPI呼び出しも外部LLMを使用しない。"""
+    _seed(1)
+    monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Generation must be explicitly enabled")
+
+    monkeypatch.setattr(search_api, "_expand_queries", forbidden)
+    monkeypatch.setattr(search_api, "_generate_grounded_answer", forbidden)
+    response = api_client.post("/search", json={"query": "Claude Code"})
+    assert response.status_code == 200
+    assert response.json()["answer"] is None
+
+
+@pytest.mark.parametrize("citation", ["0", "2"])
+def test_grounded_answer_rejects_nonexistent_citation(monkeypatch, citation):
+    """引用先は1始まりかつ検索結果数以内でなければならない。"""
+    results = [search_api.SearchResult(content="Evidence", source="sample", score=0.9)]
+    monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+    monkeypatch.setattr(search_api, "_ANSWER_CACHE", {})
+    monkeypatch.setattr(
+        search_api,
+        "_call_generation_model",
+        lambda *args: json.dumps({"answer": f"回答[{citation}]", "results": []}),
+    )
+    assert search_api._generate_grounded_answer(results, "引用の検証") is None
+
+
 def test_search_top_k_upper_bound(api_client):
     """TC-S-002: top_k=100 は 422。"""
     response = api_client.post("/search", json={"query": "test", "top_k": 100})
@@ -209,6 +240,19 @@ def test_search_empty_query(api_client):
     """TC-S-003: 空クエリは 422。"""
     response = api_client.post("/search", json={"query": "", "top_k": 5})
     assert response.status_code == 422
+
+
+def test_search_query_over_max_length(api_client):
+    """4001文字のクエリは 422（モデル入力上限512トークンを大きく超える入力を弾く）。"""
+    response = api_client.post("/search", json={"query": "q" * 4001, "top_k": 5})
+    assert response.status_code == 422
+
+
+def test_search_query_at_max_length(api_client):
+    """境界値4000文字のクエリは受理される。"""
+    _seed(1)
+    response = api_client.post("/search", json={"query": "q" * 4000})
+    assert response.status_code == 200
 
 
 def test_search_category_filter(api_client):

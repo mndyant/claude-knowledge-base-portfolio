@@ -413,6 +413,10 @@ def post_discord(messages: list[str], webhook_url: str) -> None:
                 continue
             response.raise_for_status()
             break
+        else:
+            # 429のまま再試行上限に達した。ここで黙ってreturnすると
+            # 呼び出し元のsave_stateが未配信の差分を配信済みとして記録する。
+            response.raise_for_status()
         time.sleep(1)  # 連投時のレート制限予防
 
 

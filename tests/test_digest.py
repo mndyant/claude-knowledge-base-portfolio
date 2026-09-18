@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import json
 
+import pytest
+import requests
+
 from scripts.digest import (
     DISCORD_CHUNK,
     DigestItem,
@@ -11,6 +14,7 @@ from scripts.digest import (
     collect_docs_pages,
     diff_items,
     load_state,
+    post_discord,
     save_state,
 )
 
@@ -175,6 +179,38 @@ def test_build_messages_respects_discord_limit():
     assert len(messages) > 1
     assert all(len(message) <= DISCORD_CHUNK for message in messages)
     assert "ダイジェスト" in messages[0]
+
+
+def test_post_discord_raises_after_persistent_rate_limit(requests_mock, monkeypatch):
+    """429が再試行上限まで続いたら例外を送出する（黙って破棄しない）。
+
+    送出せずにreturnすると、呼び出し元main()がsave_stateで当該差分を
+    配信済みとして記録し、未配信の通知が恒久的に失われる。
+    """
+    webhook_url = "https://discord.example/api/webhooks/test"
+    requests_mock.post(webhook_url, status_code=429, json={"retry_after": 0})
+    monkeypatch.setattr("scripts.digest.time.sleep", lambda *_: None)
+
+    with pytest.raises(requests.HTTPError):
+        post_discord(["message"], webhook_url)
+
+
+def test_post_discord_recovers_after_transient_rate_limit(requests_mock, monkeypatch):
+    """429が途中で解消すれば全メッセージを投稿して正常終了する。"""
+    webhook_url = "https://discord.example/api/webhooks/test"
+    requests_mock.post(
+        webhook_url,
+        [
+            {"status_code": 429, "json": {"retry_after": 0}},
+            {"status_code": 204, "text": ""},
+            {"status_code": 204, "text": ""},
+        ],
+    )
+    monkeypatch.setattr("scripts.digest.time.sleep", lambda *_: None)
+
+    post_discord(["first", "second"], webhook_url)
+
+    assert requests_mock.call_count == 3
 
 
 def test_state_roundtrip(tmp_path):
