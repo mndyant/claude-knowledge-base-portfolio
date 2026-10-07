@@ -1,11 +1,11 @@
-const state={category:"",loading:false};
+const state={category:"",loading:false,sourceNotes:false,retrieval:"e5"};
 const $=(selector)=>document.querySelector(selector);
 const queryInput=$("#query"),searchForm=$("#search-form"),searchButton=$("#search-button");
 const suggestions=$("#suggestions"),results=$("#results"),stateCard=$("#state-card"),answerPanel=$("#answer-panel");
 const resultsTitle=$("#results-title"),sectionKicker=$("#section-kicker"),searchMeta=$("#search-meta");
 
 function escapeHtml(value=""){return String(value).replace(/[&<>'"]/g,(char)=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));}
-function categoryFromSource(source){return source.match(/knowledge[\\/]([^\\/]+)/)?.[1]||"source";}
+function categoryFromSource(source){return source.match(/(?:knowledge|demo-notes)[\\/]([^\\/]+)/)?.[1]||"source";}
 function titleFor(item){return item.japanese_title||item.heading_path||item.section||item.summary_short||item.source.split(/[\\/]/).pop()?.replace(/\.md$/i,"")||"Untitled source";}
 function setLoading(loading){
   state.loading=loading;searchButton.disabled=loading;
@@ -30,15 +30,16 @@ function renderResults(payload,query){
   if(!payload.results.length){showMessage("No results found","\u30ad\u30fc\u30ef\u30fc\u30c9\u3084\u30ab\u30c6\u30b4\u30ea\u3092\u5909\u3048\u3066\u3001\u3082\u3046\u4e00\u5ea6\u304a\u8a66\u3057\u304f\u3060\u3055\u3044\u3002");return;}
   renderAnswer(payload.answer);
   results.innerHTML=payload.results.map((item,index)=>{
-    const score=Math.max(0,Math.min(1,Number(item.score)||0));
+    const score=Number(item.score)||0;
+    const scoreLabel=state.retrieval==="bm25"?`BM25 ${score.toFixed(2)}`:`類似度 ${score.toFixed(3)}`;
     const summary=item.japanese_summary?`<p class="summary">${escapeHtml(item.japanese_summary)}</p>`:(item.summary_short&&item.summary_short!==titleFor(item)?`<p class="summary">${escapeHtml(item.summary_short)}</p>`:"");
     return `<article class="result-card" id="source-${index+1}" style="animation-delay:${index*45}ms">
       <div class="result-top"><span class="category-badge">${escapeHtml(categoryFromSource(item.source))}</span>
       <span class="citation-badge">引用 ${index+1}</span>
       ${item.has_code?'<span class="category-badge">code</span>':""}
-      <span class="score"><span class="score-bar"><i style="width:${score*100}%"></i></span>${Math.round(score*100)}% match</span></div>
+      <span class="score">${scoreLabel}</span></div>
       <h3>${escapeHtml(titleFor(item))}</h3>${summary}
-      <details class="result-original"><summary>英語の原文を表示</summary><div class="result-content">${escapeHtml(item.content)}</div></details>
+      <details class="result-original"><summary>${state.sourceNotes?"英語の独自要約を表示":"英語の原文を表示"}</summary><div class="result-content">${escapeHtml(item.content)}</div></details>
       <div class="result-actions"><span class="source-path" title="${escapeHtml(item.source)}">${escapeHtml(item.source)}</span>
       ${item.source_url?`<a class="source-link" href="${escapeHtml(item.source_url)}" target="_blank" rel="noopener noreferrer">公式ページで詳しく読む ↗</a>`:""}
       <button class="text-button expand-button" type="button">詳しく見る</button>
@@ -46,12 +47,12 @@ function renderResults(payload,query){
     </article>`;
   }).join("");
 }
-async function runSearch(query){
+async function runSearch(query,scroll=true){
   const cleanQuery=query.trim();if(!cleanQuery||state.loading)return;queryInput.value=cleanQuery;setLoading(true);
   try{
     const response=await fetch("/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:cleanQuery,top_k:Number($("#top-k").value),category:state.category||null,generate_answer:$("#generate-answer")?.checked||false})});
     const payload=await response.json();if(!response.ok)throw new Error(payload.detail||"Search failed");
-    renderResults(payload,cleanQuery);$("#results-section").scrollIntoView({behavior:"smooth",block:"start"});
+    renderResults(payload,cleanQuery);if(scroll)$("#results-section").scrollIntoView({behavior:"smooth",block:"start"});
   }catch(error){
     sectionKicker.textContent="CONNECTION ERROR";resultsTitle.textContent="Search unavailable";searchMeta.textContent="";
     showMessage("\u30ca\u30ec\u30c3\u30b8\u30d9\u30fc\u30b9\u306b\u63a5\u7d9a\u3067\u304d\u307e\u305b\u3093",error.message);
@@ -90,17 +91,25 @@ async function loadStatus(){
   }else{$("#health-label").textContent="Index offline";}
   if(sourcesResult.status==="fulfilled"){
     $("#source-count").textContent=`${sourcesResult.value.total.toLocaleString()} sources`;
-    if(sourcesResult.value.sources.length && sourcesResult.value.sources.every((source)=>source.startsWith("sample/"))){
-      $(".eyebrow").textContent="LOCAL RAG · SAMPLE DATA";
-      $(".hero h1").textContent="小さなデータで、検索の流れを確認。";
-      $(".hero > p").textContent="自作のサンプル文書4件を実際のe5モデルで検索します。公式文書や個人用DBは使用していません。";
-      $("#health-label").textContent="Sample index online";
+    if(sourcesResult.value.sources.length && sourcesResult.value.sources.every((source)=>source.startsWith("demo-notes/"))){
+      state.sourceNotes=true;
+      state.retrieval=healthResult.status==="fulfilled"?healthResult.value.retrieval:"e5";
+      const publicDemo=state.retrieval==="bm25";
+      $(".eyebrow").textContent=publicDemo?"PUBLIC DEMO · BM25 KEYWORD SEARCH":"LOCAL DEMO · E5 SEMANTIC SEARCH";
+      $(".hero h1").textContent="Claudeの使い方を、出典から探す。";
+      $(".hero > p").textContent=`公式ドキュメント3ページに基づく独自要約6件を${publicDemo?"BM25キーワード検索":"e5意味検索"}します。原文の転載・LLMによる回答生成ではありません。出典確認：2026-10-07。${publicDemo?" e5＋ChromaDB版はGitHubからダウンロードできます。":""}`;
+      $("#health-label").textContent=publicDemo?"BM25 index online":"E5 index online";
       $("#generate-answer").disabled=true;
-      $("#generate-answer").parentElement.textContent="サンプルデモ：外部LLMを使わない検索";
+      $("#generate-answer").parentElement.textContent="出典付き要約の検索（回答生成なし）";
+      $(".sidebar-footer span").textContent=publicDemo?"Public demo · No API key":"Local e5 search · No API key";
+      $(".collection-meta span:last-child").textContent="3 official pages";
+      if(publicDemo){
+        const repoLink=document.createElement("a");repoLink.href="https://github.com/mndyant/claude-knowledge-base-portfolio";repoLink.className="api-link";repoLink.textContent="GitHub / ダウンロード ↗";$(".hero").append(repoLink);
+      }
       const prompts=[
-        ["トークン上限", "なぜチャンクのトークン数を測る必要がある？"],
-        ["再開可能な処理", "中断したインデックス作成をどう再開する？"],
-        ["安全なテスト", "本番のデータを変更せずにテストするには？"]
+        ["Streaming", "応答をストリーミングで受け取るには？"],
+        ["Vision", "画像をAPIに渡す方法は？"],
+        ["Tool use", "ツールの実行結果をClaudeに返すには？"]
       ];
       document.querySelectorAll(".suggestion-card").forEach((button,index)=>{
         button.dataset.query=prompts[index][1];
@@ -110,4 +119,7 @@ async function loadStatus(){
     }
   }
 }
-loadStatus();
+loadStatus().then(()=>{
+  const initialQuery=new URLSearchParams(location.search).get("q");
+  if(initialQuery)runSearch(initialQuery,false);
+});

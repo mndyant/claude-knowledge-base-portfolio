@@ -391,7 +391,10 @@ def search(request: SearchRequest) -> SearchResponse:
 def health() -> dict:
     """ヘルスチェック。コレクションの登録件数を返す。"""
     collection = _get_existing_collection()
-    return {"status": "ok", "total_documents": collection.count()}
+    result = {"status": "ok", "total_documents": collection.count()}
+    if get_collection_name() == "portfolio_source_notes":
+        result.update(demo_mode="source-notes", retrieval="e5")
+    return result
 
 
 @app.get("/sources")

@@ -48,6 +48,13 @@ knowledge/**/*.md
 data/digest_state.json
 data/processed/
 .portfolio-demo/
+.vercel/
+.public-deploy/
+.model-download/
+.screenshot-profile*/
+.test-run/
+.public-test-run/
+.download-verification/
 
 # Local editor settings, logs and database sidecars
 .vscode/
