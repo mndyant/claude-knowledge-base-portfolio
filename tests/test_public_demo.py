@@ -10,7 +10,12 @@ client = TestClient(app)
 def test_public_demo_searches_source_notes() -> None:
     """日本語と英語の検索が、対応する公式出典を持つ要約を返す。"""
     for query, expected in [
+        ("応答をストリーミングで受け取るには？", "/streaming"),
+        ("message_startからmessage_stopまでのイベントは？", "/streaming"),
         ("画像をAPIに渡す方法は？", "/vision"),
+        ("画像はJPEG PNG GIF WebPに対応している？", "/vision"),
+        ("ツールの実行結果をClaudeに返すには？", "/tool-use/overview"),
+        ("クライアントツールとサーバーツールの実行場所は？", "/tool-use/overview"),
         ("text_stream SSE", "/streaming"),
         ("tool_use_id tool_result", "/tool-use/overview"),
     ]:
@@ -52,4 +57,7 @@ def test_public_demo_serves_ui_and_swagger() -> None:
     for route in ["/", "/styles.css", "/app.js", "/docs", "/openapi.json"]:
         assert client.get(route).status_code == 200
     assert client.get("/health").json()["total_documents"] == 6
+    assert client.get("/health").json()["source_pages"] == len(
+        client.get("/sources").json()["official_urls"]
+    )
     assert len(client.get("/sources").json()["official_urls"]) == 3

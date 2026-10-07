@@ -72,13 +72,14 @@ def test_root_serves_search_ui(api_client):
 
 
 def test_client_renders_japanese_summary(api_client):
+    """日本語要約・出典・任意の回答生成のUIを配信する。"""
     response = api_client.get("/app.js")
 
     assert response.status_code == 200
     assert "japanese_summary" in response.text
-    assert "英語の原文を表示" in response.text
-    assert "公式ページで詳しく読む" in response.text
-    assert "RAG AGENT ANSWER" in response.text
+    assert "本文を読む" in response.text
+    assert "公式出典を読む" in response.text
+    assert "出典付き回答" in response.text
 
 
 def test_grounded_answer_uses_numbered_citations(monkeypatch):
@@ -195,7 +196,9 @@ def test_search_only_never_calls_generation(api_client, monkeypatch):
 
     monkeypatch.setattr(search_api, "_call_generation_model", forbidden)
     monkeypatch.setattr(search_api, "_expand_queries", forbidden)
-    response = api_client.post("/search", json={"query": "Claude Code", "generate_answer": False})
+    response = api_client.post(
+        "/search", json={"query": "Claude Code", "generate_answer": False}
+    )
     assert response.status_code == 200
     assert response.json()["answer"] is None
     assert response.json()["total"] == 3
@@ -279,6 +282,24 @@ def test_health_check(api_client):
     data = response.json()
     assert data["status"] == "ok"
     assert data["total_documents"] == 3
+
+
+def test_source_note_health_describes_demo_scope(api_client, monkeypatch):
+    """ローカルデモでも、対象ページ数・確認日・検索方式を明示する。"""
+    _seed(6)
+    collection = search_api._get_existing_collection()
+    monkeypatch.setattr(search_api, "_get_existing_collection", lambda: collection)
+    monkeypatch.setattr(
+        search_api, "get_collection_name", lambda: "portfolio_source_notes"
+    )
+
+    data = api_client.get("/health").json()
+
+    assert data["total_documents"] == 6
+    assert data["demo_mode"] == "source-notes"
+    assert data["retrieval"] == "e5"
+    assert data["source_pages"] == 3
+    assert data["sources_checked_at"] == "2026-10-07"
 
 
 def test_search_collection_not_initialized(api_client):

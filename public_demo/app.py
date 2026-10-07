@@ -82,6 +82,7 @@ def health() -> dict:
         "demo_mode": "source-notes",
         "retrieval": "bm25",
         "sources_checked_at": CHECKED_AT,
+        "source_pages": len({note["url"] for note in NOTES}),
     }
 
 

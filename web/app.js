@@ -1,125 +1,141 @@
-const state={category:"",loading:false,sourceNotes:false,retrieval:"e5"};
-const $=(selector)=>document.querySelector(selector);
-const queryInput=$("#query"),searchForm=$("#search-form"),searchButton=$("#search-button");
-const suggestions=$("#suggestions"),results=$("#results"),stateCard=$("#state-card"),answerPanel=$("#answer-panel");
-const resultsTitle=$("#results-title"),sectionKicker=$("#section-kicker"),searchMeta=$("#search-meta");
+const $ = (selector) => document.querySelector(selector);
+const state = { loading: false, sourceNotes: false, retrieval: "unknown", ready: null };
+const queryInput = $("#query");
+const searchButton = $("#search-button");
+const results = $("#results");
+const message = $("#message");
 
-function escapeHtml(value=""){return String(value).replace(/[&<>'"]/g,(char)=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));}
-function categoryFromSource(source){return source.match(/(?:knowledge|demo-notes)[\\/]([^\\/]+)/)?.[1]||"source";}
-function titleFor(item){return item.japanese_title||item.heading_path||item.section||item.summary_short||item.source.split(/[\\/]/).pop()?.replace(/\.md$/i,"")||"Untitled source";}
-function setLoading(loading){
-  state.loading=loading;searchButton.disabled=loading;
-  if(!loading)return;
-  suggestions.hidden=true;results.hidden=true;answerPanel.hidden=true;stateCard.hidden=false;
-  stateCard.innerHTML='<div class="spinner"></div><strong>Searching the knowledge base</strong><p>\u95a2\u9023\u3059\u308b\u4e00\u6b21\u60c5\u5831\u3092\u63a2\u3057\u3066\u3044\u307e\u3059...</p>';
+function escapeHtml(value = "") {
+  return String(value).replace(/[&<>'"]/g, (char) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+  }[char]));
 }
-function showMessage(title,message){
-  suggestions.hidden=true;results.hidden=true;answerPanel.hidden=true;stateCard.hidden=false;
-  stateCard.innerHTML=`<strong>${escapeHtml(title)}</strong><p>${escapeHtml(message)}</p>`;
+
+function sourceUrl(value) {
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+  } catch { return null; }
 }
-function renderAnswer(answer){
-  if(!answer){answerPanel.hidden=true;answerPanel.innerHTML="";return;}
-  const linked=escapeHtml(answer).replace(/\[(\d+)\]/g,'<a href="#source-$1">[$1]</a>').replace(/\n/g,"<br>");
-  answerPanel.hidden=false;
-  answerPanel.innerHTML=`<div class="answer-label">RAG AGENT ANSWER</div><h3>公式情報に基づく回答</h3><div class="answer-body">${linked}</div><p class="answer-note">回答中の番号から、根拠となる公式資料を確認できます。</p>`;
+
+function showMessage(title, detail = "") {
+  message.hidden = false;
+  message.innerHTML = `<strong>${escapeHtml(title)}</strong><p>${escapeHtml(detail)}</p>`;
 }
-function renderResults(payload,query){
-  stateCard.hidden=true;suggestions.hidden=true;results.hidden=false;
-  sectionKicker.textContent="SEARCH RESULTS";resultsTitle.textContent=`"${query}"`;
-  searchMeta.textContent=`${payload.total} results - ${payload.elapsed_ms.toLocaleString()} ms`;
-  if(!payload.results.length){showMessage("No results found","\u30ad\u30fc\u30ef\u30fc\u30c9\u3084\u30ab\u30c6\u30b4\u30ea\u3092\u5909\u3048\u3066\u3001\u3082\u3046\u4e00\u5ea6\u304a\u8a66\u3057\u304f\u3060\u3055\u3044\u3002");return;}
-  renderAnswer(payload.answer);
-  results.innerHTML=payload.results.map((item,index)=>{
-    const score=Number(item.score)||0;
-    const scoreLabel=state.retrieval==="bm25"?`BM25 ${score.toFixed(2)}`:`類似度 ${score.toFixed(3)}`;
-    const summary=item.japanese_summary?`<p class="summary">${escapeHtml(item.japanese_summary)}</p>`:(item.summary_short&&item.summary_short!==titleFor(item)?`<p class="summary">${escapeHtml(item.summary_short)}</p>`:"");
-    return `<article class="result-card" id="source-${index+1}" style="animation-delay:${index*45}ms">
-      <div class="result-top"><span class="category-badge">${escapeHtml(categoryFromSource(item.source))}</span>
-      <span class="citation-badge">引用 ${index+1}</span>
-      ${item.has_code?'<span class="category-badge">code</span>':""}
-      <span class="score">${scoreLabel}</span></div>
-      <h3>${escapeHtml(titleFor(item))}</h3>${summary}
-      <details class="result-original"><summary>${state.sourceNotes?"英語の独自要約を表示":"英語の原文を表示"}</summary><div class="result-content">${escapeHtml(item.content)}</div></details>
-      <div class="result-actions"><span class="source-path" title="${escapeHtml(item.source)}">${escapeHtml(item.source)}</span>
-      ${item.source_url?`<a class="source-link" href="${escapeHtml(item.source_url)}" target="_blank" rel="noopener noreferrer">公式ページで詳しく読む ↗</a>`:""}
-      <button class="text-button expand-button" type="button">詳しく見る</button>
-      <button class="text-button copy-button" type="button">コピー</button></div>
+
+function setLoading(loading) {
+  state.loading = loading;
+  searchButton.disabled = loading;
+  searchButton.textContent = loading ? "検索中…" : "検索";
+  document.querySelectorAll("[data-query]").forEach((button) => { button.disabled = loading; });
+  $("#results-section").setAttribute("aria-busy", String(loading));
+}
+
+function renderResults(payload, query) {
+  $("#results-heading").hidden = false;
+  $("#results-title").textContent = `「${query}」の検索結果`;
+  $("#search-meta").textContent = `${payload.results.length}件 · ${Number(payload.elapsed_ms).toLocaleString()} ms`;
+  if (!payload.results.length) {
+    showMessage("一致する資料がありません", state.sourceNotes
+      ? "対象はストリーミング・画像入力・ツール呼び出しです。日本語は2文字以上の語で試してください。"
+      : "キーワードやカテゴリを変えて試してください。");
+    return;
+  }
+  message.hidden = true;
+  $("#announcer").textContent = `「${query}」に関連する資料が${payload.results.length}件見つかりました。`;
+  const retrieval = payload.retrieval || state.retrieval;
+  const sourceNotes = state.sourceNotes || payload.results.every((item) => item.source?.startsWith("demo-notes/"));
+  results.innerHTML = payload.results.map((item, index) => {
+    const title = item.japanese_title || item.heading_path || item.section || item.source?.split(/[\\/]/).pop() || "資料";
+    const summary = item.japanese_summary || item.summary_short || "";
+    const url = sourceUrl(item.source_url);
+    const score = Number(item.score);
+    const scoreText = Number.isFinite(score)
+      ? `${retrieval === "bm25" ? "BM25" : "類似度"} ${score.toFixed(retrieval === "bm25" ? 2 : 3)}` : "";
+    return `<article class="result-card" id="source-${index + 1}">
+      <div class="result-top"><h3>${escapeHtml(title)}</h3><span class="result-number">${String(index + 1).padStart(2, "0")}</span></div>
+      ${summary ? `<p class="summary">${escapeHtml(summary)}</p>` : ""}
+      <details class="original"><summary>${sourceNotes ? "英語の独自要約を読む" : "本文を読む"}</summary>
+        <div class="result-content">${escapeHtml(item.content)}</div>
+        <p class="source-path">${escapeHtml(item.source)}</p>
+      </details>
+      <div class="result-bottom">${url ? `<a class="source-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">公式出典を読む ↗</a>` : ""}<span class="score">${scoreText}</span></div>
     </article>`;
   }).join("");
-}
-async function runSearch(query,scroll=true){
-  const cleanQuery=query.trim();if(!cleanQuery||state.loading)return;queryInput.value=cleanQuery;setLoading(true);
-  try{
-    const response=await fetch("/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:cleanQuery,top_k:Number($("#top-k").value),category:state.category||null,generate_answer:$("#generate-answer")?.checked||false})});
-    const payload=await response.json();if(!response.ok)throw new Error(payload.detail||"Search failed");
-    renderResults(payload,cleanQuery);if(scroll)$("#results-section").scrollIntoView({behavior:"smooth",block:"start"});
-  }catch(error){
-    sectionKicker.textContent="CONNECTION ERROR";resultsTitle.textContent="Search unavailable";searchMeta.textContent="";
-    showMessage("\u30ca\u30ec\u30c3\u30b8\u30d9\u30fc\u30b9\u306b\u63a5\u7d9a\u3067\u304d\u307e\u305b\u3093",error.message);
-  }finally{setLoading(false);}
-}
-searchForm.addEventListener("submit",(event)=>{event.preventDefault();runSearch(queryInput.value);});
-document.querySelectorAll("[data-query]").forEach((button)=>button.addEventListener("click",()=>runSearch(button.dataset.query)));
-document.querySelectorAll(".filter-chip").forEach((button)=>button.addEventListener("click",()=>{
-  document.querySelectorAll(".filter-chip").forEach((chip)=>chip.classList.remove("active"));
-  button.classList.add("active");state.category=button.dataset.category;if(queryInput.value.trim())runSearch(queryInput.value);
-}));
-results.addEventListener("click",async(event)=>{
-  const card=event.target.closest(".result-card");if(!card)return;
-  if(event.target.matches(".expand-button")){const expanded=card.classList.toggle("expanded");const original=card.querySelector(".result-original");if(original)original.open=expanded;event.target.textContent=expanded?"閉じる":"詳しく見る";}
-  if(event.target.matches(".copy-button")){
-    await navigator.clipboard.writeText(card.querySelector(".summary")?.textContent||card.querySelector(".result-content").textContent);event.target.textContent="コピーしました";
-    setTimeout(()=>{event.target.textContent="コピー";},1300);
+  if (payload.answer) {
+    $("#answer").hidden = false;
+    const answer = escapeHtml(payload.answer).replace(/\[(\d+)\]/g, '<a href="#source-$1">[$1]</a>').replace(/\n/g, "<br>");
+    $("#answer").innerHTML = `<h3>出典付き回答</h3><div>${answer}</div><p>生成された回答です。引用先の資料も確認してください。</p>`;
   }
-});
-document.addEventListener("keydown",(event)=>{
-  if(event.key==="/"&&!["INPUT","TEXTAREA"].includes(document.activeElement.tagName)){event.preventDefault();queryInput.focus();}
-  if(event.key==="Escape")queryInput.blur();
-});
-document.querySelectorAll("[data-focus-search]").forEach((button)=>button.addEventListener("click",()=>queryInput.focus()));
-const sidebar=$("#sidebar"),overlay=$("#overlay");
-function toggleMenu(open){sidebar.classList.toggle("open",open);overlay.hidden=!open;$("#menu-button").setAttribute("aria-expanded",String(open));}
-$("#menu-button").addEventListener("click",()=>toggleMenu(!sidebar.classList.contains("open")));overlay.addEventListener("click",()=>toggleMenu(false));
-async function loadStatus(){
-  const [healthResult,sourcesResult]=await Promise.allSettled([
-    fetch("/health").then((response)=>response.ok?response.json():Promise.reject()),
-    fetch("/sources").then((response)=>response.ok?response.json():Promise.reject())
-  ]);
-  if(healthResult.status==="fulfilled"){
-    $("#health-dot").classList.add("online");$("#health-label").textContent="Index online";
-    $("#document-count").textContent=healthResult.value.total_documents.toLocaleString();
-  }else{$("#health-label").textContent="Index offline";}
-  if(sourcesResult.status==="fulfilled"){
-    $("#source-count").textContent=`${sourcesResult.value.total.toLocaleString()} sources`;
-    if(sourcesResult.value.sources.length && sourcesResult.value.sources.every((source)=>source.startsWith("demo-notes/"))){
-      state.sourceNotes=true;
-      state.retrieval=healthResult.status==="fulfilled"?healthResult.value.retrieval:"e5";
-      const publicDemo=state.retrieval==="bm25";
-      $(".eyebrow").textContent=publicDemo?"PUBLIC DEMO · BM25 KEYWORD SEARCH":"LOCAL DEMO · E5 SEMANTIC SEARCH";
-      $(".hero h1").textContent="Claudeの使い方を、出典から探す。";
-      $(".hero > p").textContent=`公式ドキュメント3ページに基づく独自要約6件を${publicDemo?"BM25キーワード検索":"e5意味検索"}します。原文の転載・LLMによる回答生成ではありません。出典確認：2026-10-07。${publicDemo?" e5＋ChromaDB版はGitHubからダウンロードできます。":""}`;
-      $("#health-label").textContent=publicDemo?"BM25 index online":"E5 index online";
-      $("#generate-answer").disabled=true;
-      $("#generate-answer").parentElement.textContent="出典付き要約の検索（回答生成なし）";
-      $(".sidebar-footer span").textContent=publicDemo?"Public demo · No API key":"Local e5 search · No API key";
-      $(".collection-meta span:last-child").textContent="3 official pages";
-      if(publicDemo){
-        const repoLink=document.createElement("a");repoLink.href="https://github.com/mndyant/claude-knowledge-base-portfolio";repoLink.className="api-link";repoLink.textContent="GitHub / ダウンロード ↗";$(".hero").append(repoLink);
-      }
-      const prompts=[
-        ["Streaming", "応答をストリーミングで受け取るには？"],
-        ["Vision", "画像をAPIに渡す方法は？"],
-        ["Tool use", "ツールの実行結果をClaudeに返すには？"]
-      ];
-      document.querySelectorAll(".suggestion-card").forEach((button,index)=>{
-        button.dataset.query=prompts[index][1];
-        button.querySelector("strong").textContent=prompts[index][0];
-        button.querySelector("small").textContent=prompts[index][1];
-      });
+}
+
+async function runSearch(query) {
+  const cleanQuery = query.trim();
+  if (!cleanQuery || state.loading) return;
+  if (cleanQuery.length > 4000) { showMessage("質問が長すぎます", "4000文字以内で入力してください。"); return; }
+  queryInput.value = cleanQuery;
+  setLoading(true);
+  results.innerHTML = "";
+  $("#announcer").textContent = "";
+  $("#answer").hidden = true;
+  $("#results-heading").hidden = true;
+  showMessage("関連する資料を探しています…");
+  try {
+    await state.ready;
+    const response = await fetch("/search", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: cleanQuery,
+        top_k: state.sourceNotes ? 3 : Number($("#top-k").value),
+        category: state.sourceNotes ? null : ($("#category").value || null),
+        generate_answer: !state.sourceNotes && $("#generate-answer").checked }),
+      signal: AbortSignal.timeout(60000)
+    });
+    let payload;
+    try { payload = await response.json(); }
+    catch { throw new Error(response.ok ? "検索結果を読み取れませんでした。再度お試しください。" : `検索に失敗しました（HTTP ${response.status}）`); }
+    if (!response.ok) throw new Error(typeof payload.detail === "string" ? payload.detail : `検索に失敗しました（HTTP ${response.status}）`);
+    renderResults(payload, cleanQuery);
+  } catch (error) {
+    showMessage("検索できませんでした", error.name === "TimeoutError"
+      ? "接続がタイムアウトしました。少し待ってから再度検索してください。"
+      : error instanceof TypeError ? "サーバーへ接続できません。通信状態を確認して再度お試しください。" : error.message);
+  } finally { setLoading(false); }
+}
+
+async function loadStatus() {
+  try {
+    const response = await fetch("/health", { signal: AbortSignal.timeout(8000) });
+    if (!response.ok) throw new Error("Index unavailable");
+    const health = await response.json();
+    state.sourceNotes = health.demo_mode === "source-notes";
+    state.retrieval = health.retrieval || "e5";
+    $("#index-status").textContent = `${Number(health.total_documents).toLocaleString()}件の検索対象 · ${state.retrieval === "bm25" ? "BM25" : "e5意味検索"}`;
+    if (state.sourceNotes) {
+      const publicDemo = state.retrieval === "bm25";
+      $("#mode-label").textContent = publicDemo ? "公開デモ · キーワード検索" : "ローカルデモ · 意味検索";
+      $("#intro").textContent = "ストリーミング・画像入力・ツール呼び出しを、公式出典付きの要約から検索。";
+      const sourceLabel = Number.isInteger(health.source_pages) ? `公式${health.source_pages}ページ` : "公式資料";
+      $("#scope-note").textContent = `${sourceLabel}を基にした独自要約${health.total_documents}件。回答生成なし。最新モデル・料金は対象外。${health.sources_checked_at ? `出典確認：${health.sources_checked_at}。` : ""}`;
+      $("#generate-answer").disabled = true;
+    } else {
+      $("#advanced-options").hidden = false;
+      $("#scope-note").textContent = "登録済みの資料を検索します。回答生成は検索オプションから選べます。";
     }
+  } catch {
+    $("#index-status").textContent = "検索サーバーへの接続を確認できません";
+    $("#scope-note").textContent = "接続状態を確認できませんでした。サーバーの起動・通信状態を確認してください。";
   }
 }
-loadStatus().then(()=>{
-  const initialQuery=new URLSearchParams(location.search).get("q");
-  if(initialQuery)runSearch(initialQuery,false);
+
+$("#search-form").addEventListener("submit", (event) => { event.preventDefault(); runSearch(queryInput.value); });
+document.querySelectorAll("[data-query]").forEach((button) => {
+  button.addEventListener("click", () => runSearch(button.dataset.query));
 });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "/" && !event.ctrlKey && !event.metaKey && !event.altKey && !document.activeElement.matches("input, textarea, select, [contenteditable]")) {
+    event.preventDefault(); queryInput.focus();
+  }
+});
+state.ready = loadStatus();
+const initialQuery = new URLSearchParams(location.search).get("q");
+if (initialQuery) runSearch(initialQuery);

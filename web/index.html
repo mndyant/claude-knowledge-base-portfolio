@@ -3,95 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Anthropic official knowledge search">
-  <title>Claude Knowledge</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <meta name="description" content="Claudeの使い方を、公式出典付きの要約から検索。">
+  <title>Claude Knowledge · 出典から探す</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">C</div>
-        <div><strong>Claude Knowledge</strong><span>Official sources, distilled.</span></div>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Claude Knowledge ホーム">Claude <span>Knowledge</span></a>
+    <nav aria-label="関連リンク">
+      <a href="/docs">API</a>
+      <a href="https://github.com/mndyant/claude-knowledge-base-portfolio" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+  <main>
+    <section class="search-section" aria-labelledby="page-title">
+      <p class="eyebrow" id="mode-label">出典付きナレッジ検索</p>
+      <h1 id="page-title">Claudeの使い方を、<br class="mobile-break">出典から探す。</h1>
+      <p class="intro" id="intro">質問やキーワードから、関連する資料を探します。</p>
+      <form id="search-form" class="search-form" role="search">
+        <label for="query" class="sr-only">質問・キーワード</label>
+        <input id="query" name="q" type="search" maxlength="4000" required autocomplete="off" placeholder="画像をAPIに渡す方法は？">
+        <button id="search-button" type="submit">検索</button>
+      </form>
+      <div class="suggestions" role="group" aria-label="試せる質問">
+        <span>試す</span>
+        <button type="button" data-query="応答をストリーミングで受け取るには？">ストリーミング</button>
+        <button type="button" data-query="画像をAPIに渡す方法は？">画像入力</button>
+        <button type="button" data-query="ツールの実行結果をClaudeに返すには？">ツール呼び出し</button>
       </div>
-      <nav aria-label="Main navigation">
-        <p class="nav-label">Workspace</p>
-        <button class="nav-item active" type="button" data-focus-search>
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-          Search <kbd>/</kbd>
-        </button>
-        <a class="nav-item" href="/docs">
-          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
-          API Reference
-        </a>
-      </nav>
-      <div class="collection-card">
-        <div class="collection-heading"><span class="pulse-dot" id="health-dot"></span><span id="health-label">Checking index</span></div>
-        <strong id="document-count">--</strong><span>indexed chunks</span>
-        <div class="collection-meta"><span id="source-count">-- sources</span><span>Manual update</span></div>
-      </div>
-      <div class="sidebar-footer"><span>Local search · API key optional</span><span>v1.0</span></div>
-    </aside>
-
-    <main>
-      <header class="topbar">
-        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
-          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-        <div class="breadcrumb"><span>Knowledge base</span><span>/</span><strong>Search</strong></div>
-        <a class="api-link" href="/docs">API docs <span>&nearr;</span></a>
-      </header>
-
-      <div class="content">
-        <section class="hero">
-          <div class="eyebrow"><span></span>ANTHROPIC OFFICIAL KNOWLEDGE</div>
-          <h1>Answers grounded in<br><em>primary sources.</em></h1>
-          <p>Claude&#12398;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488;&#12289;&#12522;&#12522;&#12540;&#12473;&#12494;&#12540;&#12488;&#12289;&#20844;&#24335;&#12502;&#12525;&#12464;&#12434;&#27178;&#26029;&#12375;&#12390;&#12289;<br class="desktop-only">&#24517;&#35201;&#12394;&#24773;&#22577;&#12434;&#24847;&#21619;&#26908;&#32034;&#12375;&#12414;&#12377;&#12290;</p>
-          <form class="search-box" id="search-form">
-            <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <label class="sr-only" for="query">Search the knowledge base</label>
-            <input id="query" type="search" autocomplete="off" placeholder="Ask anything about Claude...">
-            <button type="submit" id="search-button"><span>Search</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </form>
-          <div class="search-options">
-            <label><input type="checkbox" id="generate-answer"> 回答生成（API設定が必要）</label>
-            <div class="filter-group" role="group" aria-label="Category">
-              <button class="filter-chip active" type="button" data-category="">All</button>
-              <button class="filter-chip" type="button" data-category="docs">Docs</button>
-              <button class="filter-chip" type="button" data-category="blog">Blog</button>
-              <button class="filter-chip" type="button" data-category="release-notes">Releases</button>
-              <button class="filter-chip" type="button" data-category="status">Status</button>
-            </div>
-            <label class="result-count">Results
-              <select id="top-k"><option>5</option><option>10</option><option>20</option></select>
-            </label>
-          </div>
-        </section>
-
-        <section class="results-section" id="results-section" aria-live="polite">
-          <div class="section-heading">
-            <div><span class="section-kicker" id="section-kicker">START EXPLORING</span><h2 id="results-title">Popular questions</h2></div>
-            <span class="search-meta" id="search-meta"></span>
-          </div>
-          <div class="suggestion-grid" id="suggestions">
-            <button class="suggestion-card" type="button" data-query="How do I implement streaming responses with the Claude API?">
-              <span class="suggestion-number">01</span><span><strong>Streaming responses</strong><small>Claude API&#12391;&#12473;&#12488;&#12522;&#12540;&#12511;&#12531;&#12464;&#12434;&#23455;&#35013;</small></span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-            <button class="suggestion-card" type="button" data-query="Tool use implementation and best practices">
-              <span class="suggestion-number">02</span><span><strong>Tool use</strong><small>&#12484;&#12540;&#12523;&#21628;&#12403;&#20986;&#12375;&#12398;&#23455;&#35013;&#12392;&#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;</small></span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-            <button class="suggestion-card" type="button" data-query="Compare the latest Claude models and context windows">
-              <span class="suggestion-number">03</span><span><strong>Model overview</strong><small>&#26368;&#26032;&#12514;&#12487;&#12523;&#12392;&#12467;&#12531;&#12486;&#12461;&#12473;&#12488;&#12454;&#12451;&#12531;&#12489;&#12454;</small></span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-          <article class="answer-panel" id="answer-panel" hidden></article>
-          <div class="results-list" id="results" hidden></div>
-          <div class="state-card" id="state-card" hidden></div>
-        </section>
-      </div>
-    </main>
-  </div>
-  <div class="overlay" id="overlay" hidden></div>
+      <details class="advanced" id="advanced-options" hidden>
+        <summary>検索オプション</summary>
+        <div class="options">
+          <label>カテゴリ <select id="category"><option value="">すべて</option><option value="docs">Docs</option><option value="blog">Blog</option><option value="release-notes">Releases</option><option value="status">Status</option></select></label>
+          <label>件数 <select id="top-k"><option>5</option><option>10</option><option>20</option></select></label>
+          <label><input type="checkbox" id="generate-answer"> 回答も生成（API設定が必要）</label>
+        </div>
+      </details>
+      <p class="scope-note" id="scope-note">検索対象を確認しています…</p>
+    </section>
+    <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+    <section class="results-section" aria-labelledby="results-title" aria-busy="false" id="results-section">
+      <div class="results-heading" hidden id="results-heading"><h2 id="results-title">検索結果</h2><span id="search-meta"></span></div>
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+      <article id="answer" class="answer" hidden></article>
+      <div id="results" class="results"></div>
+    </section>
+    <noscript><p>検索にはJavaScriptが必要です。<a href="/docs">Swagger UI</a>からAPIも確認できます。</p></noscript>
+  </main>
+  <footer><span id="index-status">接続を確認中</span><span>個人制作の非公式アプリ</span></footer>
 </body>
 </html>

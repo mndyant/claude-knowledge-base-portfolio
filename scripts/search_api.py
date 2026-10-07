@@ -55,7 +55,9 @@ class SearchRequest(BaseModel):
     )
     top_k: int = Field(5, ge=1, le=20, description="返却する上位件数（1〜20）")
     category: str | None = Field(None, description="カテゴリで絞り込む（任意）")
-    generate_answer: bool = Field(False, description="明示的に有効にした場合のみ回答を生成する")
+    generate_answer: bool = Field(
+        False, description="明示的に有効にした場合のみ回答を生成する"
+    )
 
 
 class SearchResult(BaseModel):
@@ -95,7 +97,9 @@ def _web_file(filename: str, media_type: str | None = None) -> FileResponse:
     """未同梱の画面ファイルを500エラーにせず、404で返す。"""
     target = WEB_DIR / filename
     if not target.is_file():
-        raise HTTPException(status_code=404, detail="この公開版に専用画面ファイルは含まれていません。")
+        raise HTTPException(
+            status_code=404, detail="この公開版に専用画面ファイルは含まれていません。"
+        )
     return FileResponse(target, media_type=media_type)
 
 
@@ -393,7 +397,14 @@ def health() -> dict:
     collection = _get_existing_collection()
     result = {"status": "ok", "total_documents": collection.count()}
     if get_collection_name() == "portfolio_source_notes":
-        result.update(demo_mode="source-notes", retrieval="e5")
+        from scripts.source_notes import CHECKED_AT, NOTES
+
+        result.update(
+            demo_mode="source-notes",
+            retrieval="e5",
+            source_pages=len({note["url"] for note in NOTES}),
+            sources_checked_at=CHECKED_AT,
+        )
     return result
 
 
