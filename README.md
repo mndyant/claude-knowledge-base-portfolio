@@ -9,38 +9,63 @@
 - [検索・回答品質の評価記録](docs/EVAL.md)
 - [Windows検証の範囲](docs/WINDOWS_VALIDATION.md)
 
-![日本語の質問から英語の根拠文書を検索したデモ画面](docs/images/sample-search.png)
+## ブラウザーで試す
 
-自作サンプル4文書での画面です。回答生成を使わず、原文を展開して根拠を確認できます。一般公開の常設デモはなく、以下の手順でローカル起動します。
+**[公開の検索画面](https://claude-knowledge-base-portfolio.vercel.app/) ／ [公開のSwagger UI](https://claude-knowledge-base-portfolio.vercel.app/docs)**
 
-## まず動かす：小さなサンプル検索
+インストール・APIキーは不要です。「画像をAPIに渡す方法は？」を検索し、結果から公式ページへ移動できます。Swagger UIでは `POST /search` → **Try it out** → 以下のJSON → **Execute** で検索できます。
 
-自作サンプル4件を、実際の `multilingual-e5-base` とChromaDBで検索します。個人用DB・取得文書・APIキーは不要です。サンプルの順位は動作確認用で、検索品質ベンチマークとは別です。
-
-Windows PowerShellでリポジトリのルートから実行します。既存モデルのキャッシュがあればネットワークを使いません。
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```json
+{"query":"画像をAPIに渡す方法は？", "top_k":3, "generate_answer":false}
 ```
 
-[検索画面](http://127.0.0.1:8001/) ／ [Swagger UI](http://127.0.0.1:8001/docs)
+![実際の公開デモで画像入力の方法を検索した画面](docs/images/source-search.png)
 
-「なぜチャンクのトークン数を測る必要がある？」を検索し、先頭の文書の原文を開いて根拠を確認できます。サンプルDBは `.portfolio-demo/` に作られ、再実行しても重複登録しません。8001番が使用中なら `--port 18001` を追加してください。
+ストリーミング・画像入力・ツール呼び出しに関する公式ドキュメント3ページを確認し、独自に作成した英語要約と日本語要約6件を検索します。本文は公式原文の転載ではありません。各結果に公式出典のURLを付けています。出典確認：2026-10-07。
 
-モデルが未取得の場合だけ、先に以下でダウンロードします。モデル取得には通信・ディスク容量・メモリが必要です。API利用料は発生しません。
+| 試し方 | 検索方式 | 対象 |
+|---|---|---|
+| 公開デモ | BM25キーワード検索（英単語・日本語2文字単位） | 出典付き独自要約6件 |
+| ダウンロード版のデモ | multilingual-e5-base＋ChromaDBの意味検索 | 同じ独自要約6件 |
+| 通常版 | multilingual-e5-base＋ChromaDBの意味検索 | 自分で取得・登録した公式文書 |
 
-```powershell
-.\.venv\Scripts\python.exe -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('intfloat/multilingual-e5-base')"
-```
+公開デモは小さな索引を使う検索体験用です。順位・スコアはローカルのベクトル検索とは異なり、既存のRecall/MRR評価を再現するものではありません。回答生成はありません。公開版の配置方法は [DEPLOY.md](public_demo/DEPLOY.md) に記載しています。
 
-モデルを用意したら起動します。キャッシュが見つからない場合は、上のモデル取得を同じ仮想環境・ユーザーで実行してください。
+## ダウンロードして意味検索を試す（Windows PowerShell）
 
-```powershell
-.\.venv\Scripts\python.exe -m scripts.portfolio_demo --serve
-```
+Pythonが必要です。今回の確認環境と結果は [WINDOWS_VALIDATION.md](docs/WINDOWS_VALIDATION.md) を参照してください。
 
-デモは回答生成用の環境変数を使わず、外部LLM・通知サービスを呼びません。終了は `Ctrl+C` です。
+1. [ZIPをダウンロード](https://github.com/mndyant/claude-knowledge-base-portfolio/archive/refs/heads/main.zip)して展開し、`README.md` のあるフォルダーでPowerShellを開きます。Gitを使う場合は以下です。
+
+   ```powershell
+   git clone https://github.com/mndyant/claude-knowledge-base-portfolio.git
+   cd claude-knowledge-base-portfolio
+   ```
+
+2. 仮想環境を作り、依存パッケージをインストールします。初回はtorchなどのダウンロードと展開に数分以上かかる場合があります。
+
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   ```
+
+3. 初回はモデルを取得します。通信・ディスク容量・メモリが必要です。API利用料は発生しません。取得済みならキャッシュを再利用します。
+
+   ```powershell
+   .\.venv\Scripts\python.exe -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('intfloat/multilingual-e5-base')"
+   ```
+
+4. 検索サーバーを起動します。このPowerShellは開いたままにしてください。
+
+   ```powershell
+   .\.venv\Scripts\python.exe -m scripts.portfolio_demo --serve
+   ```
+
+5. **サーバー起動後に**、同じPCのブラウザーで検索画面 `http://127.0.0.1:8001/` またはSwagger UI `http://127.0.0.1:8001/docs` を開きます。これらは自分のPCのアドレスなので、GitHubを見るだけでは開けません。ブラウザーだけで試す場合は上の公開デモへ進んでください。
+
+「画像をAPIに渡す方法は？」を検索し、Visionの要約と公式出典を確認できます。モデルのキャッシュが見つからない場合は、手順3を同じ仮想環境・ユーザーで実行してください。8001番が使用中なら起動コマンドに `--port 18001` を追加し、ブラウザー側も18001へ変更します。
+
+専用DBは `.portfolio-demo/` に作られ、再実行しても重複登録しません。個人用DB・APIキーは不要で、外部LLM・通知サービスを呼びません。終了は `Ctrl+C` です。
 
 ## 構成
 
